@@ -12,6 +12,8 @@ Statische Webseite (nur HTML, CSS und JavaScript, kein Server nötig) mit Rechne
 | `Versetzung/sozialpaedagogik.html` | Versetzungsrechner Einführungsphase – Sozialpädagogik | überarbeitet 2026-11-15 |
 | `Versetzung/wirtschaft.html` | Versetzungsrechner Einführungsphase – Wirtschaft | überarbeitet 2026-11-15 |
 | `Einbringung/index.html` | Einbringungsverpflichtung (Abitur 2027–2029) – Kombinationen der BBS Nienburg, Regeln nach § 15 Abs. 4 / Anlage 4 AVO-GOBAK | neu 2026-11-15 |
+| `Abitur/index.html` | Abiturrechner (Abitur 2027–2029): Block I, Block II, Zulassung, Durchschnittsnote – nach dem Excel-Abiturrechner, abgeglichen mit § 15 Abs. 4 und Anlagen 1, 2, 4 AVO-GOBAK | neu 2026-11-15 |
+| `js/abitur-daten.js` | Gemeinsame Daten: Prüfungsfachkombinationen der BBS Nienburg und Einbringung (für Einbringung und Abiturrechner) | neu 2026-11-15 |
 | `impressum.html` | Impressum | neu 2026-11-15 |
 | `Bilder/Logo.png` | Schullogo | |
 
