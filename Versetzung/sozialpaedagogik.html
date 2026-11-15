@@ -133,7 +133,7 @@
       <h1>Berufliches Gymnasium Gesundheit &amp; Soziales <br>Schwerpunkt Sozialpädagogik</h1>
       <p class="sub">Versetzungsprognose am Ende der Einführungsphase im Schwerpunkt Sozialpädagogik.</p>
       <div class="tag"><span class="emoji" aria-hidden="true">🎓</span>Versetzung · Sozialpädagogik</div>
-      <p class="sub">Die Berechnung ist nicht rechtsverbindlich. Die endgültige Entscheidung über die Versetzung trifft die Klassenkonferenz.</p>
+      <p class="sub">Die Berechnung ist nicht rechtsverbindlich. Die endgültige Entscheidung über die Versetzung trifft die Klassenkonferenz. Grundlage: § 5 der Anlage 7 zu § 33 BbS-VO.</p>
       
     </header>
 
@@ -259,7 +259,7 @@
         <thead><tr><th>Fach</th><th>KMK-Punkte</th><th>Gewichtung</th><th>Hinweis</th></tr></thead>
         <tbody>
           <tr>
-            <td data-label="Fach">Biologie (BI)</td>
+            <td data-label="Fach"><select id="NW" aria-label="Belegte Naturwissenschaft" style="width:auto"><option value="BI">Biologie (BI)</option><option value="CH">Chemie (CH)</option></select></td>
             <td data-label="KMK-Punkte">
               <select id="F18"><option value="">–</option><option value='0'>0</option>
 <option value='1'>1</option>
@@ -532,7 +532,7 @@ function fixed(x){ return x==null? "–" : (Math.round(x*100)/100).toFixed(2).re
 function hintFor(value, opts){ opts = opts||{optional:false}; var n=toNum(value); var el={text:"", cls:"hint muted"};
   if(n===null){ el.text = opts.optional ? "optional" : ""; return el; }
   if(n===0){ el.text="00 Punkte"; el.cls="hint danger"; return el; }
-  if(n<5){ el.text="Unterkurs"; el.cls="hint warn"; return el; }
+  if(n<5){ el.text="unter 5 Punkte"; el.cls="hint warn"; return el; }
   el.text="ok"; el.cls="hint ok"; return el;
 }
 function applyHint(id, value, opts){ var h=hintFor(value, opts); var span=document.getElementById(id); span.textContent=h.text; span.className=h.cls; }
@@ -587,25 +587,28 @@ function calc(){
 
   var condAvgAnyUnder5 = ((A13!=null && A13<5) || (A18!=null && A18<5) || (A24!=null && A24<5));
   var condProfilUnterkurs = (n.F24!=null && n.F24<5);
-  var zeroAny = [n.F13,n.F14,n.F15,n.F16,n.F18,n.F19,n.F20,n.F21,n.F22,n.F25,n.F26,n.F27].some(function(x){ return x===0; });
+  var zeroAny = [n.F13,n.F14,n.F15,n.F16,n.F18,n.F19,n.F20,n.F21,n.F22,n.F24,n.F25,n.F26,n.F27].some(function(x){ return x===0; });
 
-  var unterkursSet=[n.F13,n.F14,n.F15,n.F16,n.F18,n.F19,n.F20,n.F21,n.F22,n.F25,n.F26,n.F27];
+  var unterkursSet=[n.F13,n.F14,n.F15,n.F16,n.F18,n.F19,n.F20,n.F21,n.F22,n.F24,n.F25,n.F26,n.F27];  // alle Fächer (§ 5 Nr. 2)
   var uCount=unterkursSet.reduce(function(acc,x){ return (x!=null && x<5)?acc+1:acc; }, 0);
   var condManyUnterkurse = (uCount >= 3);
 
-  var pSubjects = [n.F13,n.F14,n.F15,n.F18];  // Fächer, die mögliche P-Fächer sind
-  var pCount = pSubjects.reduce(function(acc,x){ return (x!=null && x<5)?acc+1:acc; }, 0);
+  var nw = document.getElementById('NW').value;   // belegte Naturwissenschaft
+  // mögliche 2./3. Prüfungsfächer (Anlage 7 § 7 Abs. 6, Sozialpädagogik): Deutsch, fortgeführte Fremdsprache, Mathematik, Biologie oder Chemie
+  var pSubjects = [n.F13,n.F14,n.F15,n.F18];
+  var pNamen = 'Deutsch, Englisch, Mathematik, ' + (nw === 'CH' ? 'Chemie' : 'Biologie');
+  var pCount = pSubjects.reduce(function(acc,x){ return (x!=null && x>0 && x<5)?acc+1:acc; }, 0);
   var condPFaecher = (pCount >= 2);
 
   var fail = (condAvgAnyUnder5 || condProfilUnterkurs || zeroAny || condManyUnterkurse || condPFaecher);
 
   var reasons=[];
   if (fail){
-    if (condAvgAnyUnder5) reasons.push("Durchschnittsnote eines Lernbereichs unter 5.");
-    if (condManyUnterkurse) reasons.push("Insgesamt mehr als 2 Unterkurse.");
-    if (condPFaecher) reasons.push("Unterkurs in 2 möglichen P-Fächern.");
-    if (zeroAny) reasons.push("Ein Fach mit 00 KMK-Punkten.");
-    if (condProfilUnterkurs) reasons.push("Unterkurs im Profilfach.");
+    if (condAvgAnyUnder5) reasons.push("In mindestens einem Lernbereich weniger als 5 Punkte (Durchschnitt).");
+    if (condManyUnterkurse) reasons.push("In mehr als zwei Fächern weniger als 5 Punkte.");
+    if (condPFaecher) reasons.push("In mehr als einem möglichen 2. oder 3. Prüfungsfach (" + pNamen + ") weniger als 5 Punkte.");
+    if (zeroAny) reasons.push("Mindestens ein Fach mit 00 Punkten.");
+    if (condProfilUnterkurs) reasons.push("Im Profilfach (1. Prüfungsfach) weniger als 5 Punkte.");
   }
 
   list.innerHTML = reasons.map(function(txt){ return "<li>"+txt+"</li>"; }).join("");
