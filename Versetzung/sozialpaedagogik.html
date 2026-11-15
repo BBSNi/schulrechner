@@ -121,6 +121,13 @@
   .btn-back{ padding:.3rem .7rem; border:1px solid rgba(0,90,167,.22); border-radius:999px; box-shadow:none;
     font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; font-size:.85rem; font-weight:600; line-height:1.2; gap:.3rem; background:rgba(255,255,255,.9); }
   .btn-back:hover{ border-color:var(--bbs-blue); background:#fff; }
+  /* Punkte-Eingabe wie im Abiturrechner: nur ganze Zahlen 0–15 */
+  input.p{
+    width:4.2rem; padding:.5rem .3rem; text-align:center; font:inherit; font-weight:700; font-size:1rem;
+    border:1.5px solid #d1d9e6; border-radius:10px; background:#fff; color:var(--text);
+  }
+  input.p:focus{ outline:none; border-color:var(--bbs-blue); box-shadow:0 0 0 6px var(--ring) }
+  input.p.abgelehnt{ border-color:#b91c1c; box-shadow:0 0 0 4px rgba(185,28,28,.18); }
 </style>
 </head>
 <body>
@@ -156,22 +163,7 @@
           <tr>
             <td data-label="Fach">Deutsch (DE)</td>
             <td data-label="KMK-Punkte">
-              <select id="F13"><option value="">–</option><option value='0'>0</option>
-<option value='1'>1</option>
-<option value='2'>2</option>
-<option value='3'>3</option>
-<option value='4'>4</option>
-<option value='5'>5</option>
-<option value='6'>6</option>
-<option value='7'>7</option>
-<option value='8'>8</option>
-<option value='9'>9</option>
-<option value='10'>10</option>
-<option value='11'>11</option>
-<option value='12'>12</option>
-<option value='13'>13</option>
-<option value='14'>14</option>
-<option value='15'>15</option></select>
+              <input class="p" id="F13" type="text" inputmode="numeric" maxlength="2" pattern="[0-9]*" autocomplete="off" aria-label="Deutsch (DE), Punkte von 0 bis 15">
             </td>
             <td class="wght" data-label="Gewichtung">×3</td>
             <td data-label="Hinweis"><span id="H_F13" class="hint muted"></span></td>
@@ -179,22 +171,7 @@
           <tr>
             <td data-label="Fach">Mathematik (MA)</td>
             <td data-label="KMK-Punkte">
-              <select id="F14"><option value="">–</option><option value='0'>0</option>
-<option value='1'>1</option>
-<option value='2'>2</option>
-<option value='3'>3</option>
-<option value='4'>4</option>
-<option value='5'>5</option>
-<option value='6'>6</option>
-<option value='7'>7</option>
-<option value='8'>8</option>
-<option value='9'>9</option>
-<option value='10'>10</option>
-<option value='11'>11</option>
-<option value='12'>12</option>
-<option value='13'>13</option>
-<option value='14'>14</option>
-<option value='15'>15</option></select>
+              <input class="p" id="F14" type="text" inputmode="numeric" maxlength="2" pattern="[0-9]*" autocomplete="off" aria-label="Mathematik (MA), Punkte von 0 bis 15">
             </td>
             <td class="wght" data-label="Gewichtung">×4</td>
             <td data-label="Hinweis"><span id="H_F14" class="hint muted"></span></td>
@@ -202,22 +179,7 @@
           <tr>
             <td data-label="Fach">Englisch (EN)</td>
             <td data-label="KMK-Punkte">
-              <select id="F15"><option value="">–</option><option value='0'>0</option>
-<option value='1'>1</option>
-<option value='2'>2</option>
-<option value='3'>3</option>
-<option value='4'>4</option>
-<option value='5'>5</option>
-<option value='6'>6</option>
-<option value='7'>7</option>
-<option value='8'>8</option>
-<option value='9'>9</option>
-<option value='10'>10</option>
-<option value='11'>11</option>
-<option value='12'>12</option>
-<option value='13'>13</option>
-<option value='14'>14</option>
-<option value='15'>15</option></select>
+              <input class="p" id="F15" type="text" inputmode="numeric" maxlength="2" pattern="[0-9]*" autocomplete="off" aria-label="Englisch (EN), Punkte von 0 bis 15">
             </td>
             <td class="wght" data-label="Gewichtung">×3</td>
             <td data-label="Hinweis"><span id="H_F15" class="hint muted"></span></td>
@@ -225,22 +187,7 @@
           <tr>
             <td data-label="Fach">Spanisch (SN)</td>
             <td data-label="KMK-Punkte">
-              <select id="F16"><option value="">–</option><option value='0'>0</option>
-<option value='1'>1</option>
-<option value='2'>2</option>
-<option value='3'>3</option>
-<option value='4'>4</option>
-<option value='5'>5</option>
-<option value='6'>6</option>
-<option value='7'>7</option>
-<option value='8'>8</option>
-<option value='9'>9</option>
-<option value='10'>10</option>
-<option value='11'>11</option>
-<option value='12'>12</option>
-<option value='13'>13</option>
-<option value='14'>14</option>
-<option value='15'>15</option></select>
+              <input class="p" id="F16" type="text" inputmode="numeric" maxlength="2" pattern="[0-9]*" autocomplete="off" aria-label="Spanisch (SN), Punkte von 0 bis 15">
             </td>
             <td class="wght" data-label="Gewichtung">×4 (optional)</td>
             <td data-label="Hinweis"><span id="H_F16" class="hint muted"></span></td>
@@ -265,22 +212,7 @@
           <tr>
             <td data-label="Fach"><select id="NW" aria-label="Belegte Naturwissenschaft" style="width:auto"><option value="BI">Biologie (BI)</option><option value="CH">Chemie (CH)</option></select></td>
             <td data-label="KMK-Punkte">
-              <select id="F18"><option value="">–</option><option value='0'>0</option>
-<option value='1'>1</option>
-<option value='2'>2</option>
-<option value='3'>3</option>
-<option value='4'>4</option>
-<option value='5'>5</option>
-<option value='6'>6</option>
-<option value='7'>7</option>
-<option value='8'>8</option>
-<option value='9'>9</option>
-<option value='10'>10</option>
-<option value='11'>11</option>
-<option value='12'>12</option>
-<option value='13'>13</option>
-<option value='14'>14</option>
-<option value='15'>15</option></select>
+              <input class="p" id="F18" type="text" inputmode="numeric" maxlength="2" pattern="[0-9]*" autocomplete="off" aria-label="Naturwissenschaft, Punkte von 0 bis 15">
             </td>
             <td class="wght" data-label="Gewichtung">×2</td>
             <td data-label="Hinweis"><span id="H_F18" class="hint muted"></span></td>
@@ -288,22 +220,7 @@
           <tr>
             <td data-label="Fach">Politik (PO)</td>
             <td data-label="KMK-Punkte">
-              <select id="F19"><option value="">–</option><option value='0'>0</option>
-<option value='1'>1</option>
-<option value='2'>2</option>
-<option value='3'>3</option>
-<option value='4'>4</option>
-<option value='5'>5</option>
-<option value='6'>6</option>
-<option value='7'>7</option>
-<option value='8'>8</option>
-<option value='9'>9</option>
-<option value='10'>10</option>
-<option value='11'>11</option>
-<option value='12'>12</option>
-<option value='13'>13</option>
-<option value='14'>14</option>
-<option value='15'>15</option></select>
+              <input class="p" id="F19" type="text" inputmode="numeric" maxlength="2" pattern="[0-9]*" autocomplete="off" aria-label="Politik (PO), Punkte von 0 bis 15">
             </td>
             <td class="wght" data-label="Gewichtung">×1</td>
             <td data-label="Hinweis"><span id="H_F19" class="hint muted"></span></td>
@@ -311,22 +228,7 @@
           <tr>
             <td data-label="Fach">Geschichte (GE)</td>
             <td data-label="KMK-Punkte">
-              <select id="F20"><option value="">–</option><option value='0'>0</option>
-<option value='1'>1</option>
-<option value='2'>2</option>
-<option value='3'>3</option>
-<option value='4'>4</option>
-<option value='5'>5</option>
-<option value='6'>6</option>
-<option value='7'>7</option>
-<option value='8'>8</option>
-<option value='9'>9</option>
-<option value='10'>10</option>
-<option value='11'>11</option>
-<option value='12'>12</option>
-<option value='13'>13</option>
-<option value='14'>14</option>
-<option value='15'>15</option></select>
+              <input class="p" id="F20" type="text" inputmode="numeric" maxlength="2" pattern="[0-9]*" autocomplete="off" aria-label="Geschichte (GE), Punkte von 0 bis 15">
             </td>
             <td class="wght" data-label="Gewichtung">×1</td>
             <td data-label="Hinweis"><span id="H_F20" class="hint muted"></span></td>
@@ -334,22 +236,7 @@
           <tr>
             <td data-label="Fach">Religion / Werte &amp; Normen (RE/WN)</td>
             <td data-label="KMK-Punkte">
-              <select id="F21"><option value="">–</option><option value='0'>0</option>
-<option value='1'>1</option>
-<option value='2'>2</option>
-<option value='3'>3</option>
-<option value='4'>4</option>
-<option value='5'>5</option>
-<option value='6'>6</option>
-<option value='7'>7</option>
-<option value='8'>8</option>
-<option value='9'>9</option>
-<option value='10'>10</option>
-<option value='11'>11</option>
-<option value='12'>12</option>
-<option value='13'>13</option>
-<option value='14'>14</option>
-<option value='15'>15</option></select>
+              <input class="p" id="F21" type="text" inputmode="numeric" maxlength="2" pattern="[0-9]*" autocomplete="off" aria-label="Religion / Werte &amp; Normen (RE/WN), Punkte von 0 bis 15">
             </td>
             <td class="wght" data-label="Gewichtung">×2</td>
             <td data-label="Hinweis"><span id="H_F21" class="hint muted"></span></td>
@@ -357,22 +244,7 @@
           <tr>
             <td data-label="Fach">Sport (SP)</td>
             <td data-label="KMK-Punkte">
-              <select id="F22"><option value="">–</option><option value='0'>0</option>
-<option value='1'>1</option>
-<option value='2'>2</option>
-<option value='3'>3</option>
-<option value='4'>4</option>
-<option value='5'>5</option>
-<option value='6'>6</option>
-<option value='7'>7</option>
-<option value='8'>8</option>
-<option value='9'>9</option>
-<option value='10'>10</option>
-<option value='11'>11</option>
-<option value='12'>12</option>
-<option value='13'>13</option>
-<option value='14'>14</option>
-<option value='15'>15</option></select>
+              <input class="p" id="F22" type="text" inputmode="numeric" maxlength="2" pattern="[0-9]*" autocomplete="off" aria-label="Sport (SP), Punkte von 0 bis 15">
             </td>
             <td class="wght" data-label="Gewichtung">×2</td>
             <td data-label="Hinweis"><span id="H_F22" class="hint muted"></span></td>
@@ -397,22 +269,7 @@
           <tr>
             <td data-label="Fach">Pädagogik/Psychologie (PP)</td>
             <td data-label="KMK-Punkte">
-              <select id="F24"><option value="">–</option><option value='0'>0</option>
-<option value='1'>1</option>
-<option value='2'>2</option>
-<option value='3'>3</option>
-<option value='4'>4</option>
-<option value='5'>5</option>
-<option value='6'>6</option>
-<option value='7'>7</option>
-<option value='8'>8</option>
-<option value='9'>9</option>
-<option value='10'>10</option>
-<option value='11'>11</option>
-<option value='12'>12</option>
-<option value='13'>13</option>
-<option value='14'>14</option>
-<option value='15'>15</option></select>
+              <input class="p" id="F24" type="text" inputmode="numeric" maxlength="2" pattern="[0-9]*" autocomplete="off" aria-label="Pädagogik/Psychologie (PP), Punkte von 0 bis 15">
             </td>
             <td class="wght" data-label="Gewichtung">×4</td>
             <td data-label="Hinweis"><span id="H_F24" class="hint muted"></span></td>
@@ -420,22 +277,7 @@
           <tr>
             <td data-label="Fach">Praxis (PRQ)</td>
             <td data-label="KMK-Punkte">
-              <select id="F25"><option value="">–</option><option value='0'>0</option>
-<option value='1'>1</option>
-<option value='2'>2</option>
-<option value='3'>3</option>
-<option value='4'>4</option>
-<option value='5'>5</option>
-<option value='6'>6</option>
-<option value='7'>7</option>
-<option value='8'>8</option>
-<option value='9'>9</option>
-<option value='10'>10</option>
-<option value='11'>11</option>
-<option value='12'>12</option>
-<option value='13'>13</option>
-<option value='14'>14</option>
-<option value='15'>15</option></select>
+              <input class="p" id="F25" type="text" inputmode="numeric" maxlength="2" pattern="[0-9]*" autocomplete="off" aria-label="Praxis (PRQ), Punkte von 0 bis 15">
             </td>
             <td class="wght" data-label="Gewichtung">×2</td>
             <td data-label="Hinweis"><span id="H_F25" class="hint muted"></span></td>
@@ -443,22 +285,7 @@
           <tr>
             <td data-label="Fach">Berufliche Informatik (BIF)</td>
             <td data-label="KMK-Punkte">
-              <select id="F26"><option value="">–</option><option value='0'>0</option>
-<option value='1'>1</option>
-<option value='2'>2</option>
-<option value='3'>3</option>
-<option value='4'>4</option>
-<option value='5'>5</option>
-<option value='6'>6</option>
-<option value='7'>7</option>
-<option value='8'>8</option>
-<option value='9'>9</option>
-<option value='10'>10</option>
-<option value='11'>11</option>
-<option value='12'>12</option>
-<option value='13'>13</option>
-<option value='14'>14</option>
-<option value='15'>15</option></select>
+              <input class="p" id="F26" type="text" inputmode="numeric" maxlength="2" pattern="[0-9]*" autocomplete="off" aria-label="Berufliche Informatik (BIF), Punkte von 0 bis 15">
             </td>
             <td class="wght" data-label="Gewichtung">×3</td>
             <td data-label="Hinweis"><span id="H_F26" class="hint muted"></span></td>
@@ -466,22 +293,7 @@
           <tr>
             <td data-label="Fach">Betriebs- und Volkswirtschaft (BV)</td>
             <td data-label="KMK-Punkte">
-              <select id="F27"><option value="">–</option><option value='0'>0</option>
-<option value='1'>1</option>
-<option value='2'>2</option>
-<option value='3'>3</option>
-<option value='4'>4</option>
-<option value='5'>5</option>
-<option value='6'>6</option>
-<option value='7'>7</option>
-<option value='8'>8</option>
-<option value='9'>9</option>
-<option value='10'>10</option>
-<option value='11'>11</option>
-<option value='12'>12</option>
-<option value='13'>13</option>
-<option value='14'>14</option>
-<option value='15'>15</option></select>
+              <input class="p" id="F27" type="text" inputmode="numeric" maxlength="2" pattern="[0-9]*" autocomplete="off" aria-label="Betriebs- und Volkswirtschaft (BV), Punkte von 0 bis 15">
             </td>
             <td class="wght" data-label="Gewichtung">×3</td>
             <td data-label="Hinweis"><span id="H_F27" class="hint muted"></span></td>
@@ -511,6 +323,20 @@ document.getElementById('btnBack').addEventListener('click', function(){
     location.href = 'index.html';
   }
 });
+
+/* Punkte-Eingabe: nur ganze Zahlen von 0 bis 15 – andere Zeichen fallen weg, zu große Werte werden nicht übernommen */
+document.addEventListener('input', function(e){
+  var t = e.target;
+  if (!t.matches || !t.matches('input.p')) return;
+  var alt = t.dataset.alt || '';
+  var s = t.value.replace(/\D/g, '').slice(0, 2);
+  if (s !== '' && Number(s) > 15) s = alt;
+  if (t.value !== s){
+    t.value = s;
+    t.classList.add('abgelehnt'); setTimeout(function(){ t.classList.remove('abgelehnt'); }, 400);
+  }
+  t.dataset.alt = s;
+}, true);
 
 /* Rechen-Funktionen */
 function toNum(v){ var x=parseFloat(v); return isNaN(x)? null : x; }
@@ -628,7 +454,7 @@ function calc(){
 }
 
 function bind(){
-  var selects=document.querySelectorAll('select');
+  var selects=document.querySelectorAll('select, input.p');
   for(var i=0;i<selects.length;i++){ 
     selects[i].addEventListener('change', calc); 
     selects[i].addEventListener('input', calc); 
