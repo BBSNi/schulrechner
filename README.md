@@ -10,13 +10,15 @@ Statische Webseite (nur HTML, CSS und JavaScript, kein Server nötig) mit Rechne
 | `Versetzung/agrarwirtschaft.html` | Versetzungsrechner Einführungsphase – Agrarwirtschaft | überarbeitet 2026-11-15 |
 | `Versetzung/sozialpaedagogik.html` | Versetzungsrechner Einführungsphase – Sozialpädagogik | überarbeitet 2026-11-15 |
 | `Versetzung/wirtschaft.html` | Versetzungsrechner Einführungsphase – Wirtschaft | überarbeitet 2026-11-15 |
+| `Einbringung/index.html` | Einbringungsverpflichtung (Abitur 2027–2029) – Kombinationen der BBS Nienburg, Regeln nach § 15 Abs. 4 / Anlage 4 AVO-GOBAK | neu 2026-11-15 |
 | `Bilder/Logo.png` | Schullogo | |
 
 Nicht enthalten (liegen nur in der lokalen Sicherung `Original_2026-11-15/`):
 - Versetzungsrechner Technik – keine Neuaufnahme in die Einführungsphase mehr.
-- Einbringungsverpflichtung – muss mit den Regeln und Ansprechpersonen der BBS Nienburg neu erstellt werden.
 
-Die Rechenregeln der Versetzungsrechner sind unverändert übernommen und noch nicht mit der BbS-VO abgeglichen.
+Die Versetzungsrechner sind mit Anlage 7 § 5 BbS-VO abgeglichen (Gewichtung der Lernbereiche: Konferenzbeschluss prüfen).
+Die Einbringungsverpflichtung berechnet die Seite nach § 15 Abs. 4 und Anlage 4 AVO-GOBAK; die Kombinationen stammen aus der Prüfungsfächerwahl der BBS Nienburg (alle 152 Kombinationen; am 2026-11-15 mit den Einbringungsblättern der Prüfungsfächerwahl abgeglichen).
+Ältere Meppener Seiten (Technik, Einbringung je Schwerpunkt) liegen nur in der lokalen Sicherung.
 
 ## Veröffentlichung
 

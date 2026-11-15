@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Schulrechner | Berufliches Gymnasium | BBS Nienburg</title>
-  <meta name="description" content="Versetzungsrechner für die Einführungsphase des Beruflichen Gymnasiums der BBS Nienburg/Weser." />
+  <meta name="description" content="Versetzungsrechner und Einbringungsverpflichtung für das Berufliche Gymnasium der BBS Nienburg/Weser." />
   <style>
     :root {
       --bbs-blue: #005aa7;
@@ -58,12 +58,12 @@
       box-shadow: var(--shadow);
       text-align: left;
     }
-    button.card {
-      cursor: pointer;
+    button.card, a.card {
+      cursor: pointer; display: block; text-decoration: none;
       transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
     }
-    button.card:hover { transform: translateY(-4px); box-shadow: 0 14px 30px rgba(0,0,0,.2); border-color: var(--bbs-blue); }
-    button.card:focus-visible { outline: none; box-shadow: 0 0 0 6px var(--ring), var(--shadow); }
+    button.card:hover, a.card:hover { transform: translateY(-4px); box-shadow: 0 14px 30px rgba(0,0,0,.2); border-color: var(--bbs-blue); }
+    button.card:focus-visible, a.card:focus-visible { outline: none; box-shadow: 0 0 0 6px var(--ring), var(--shadow); }
 
     .card.disabled { background: #f6f8fa; box-shadow: none; border: 2px dashed rgba(0,0,0,.15); }
     .card.disabled .title { color: var(--muted); }
@@ -142,12 +142,12 @@
       <span class="desc" style="display:block">Schwerpunkt auswählen: Agrarwirtschaft, Sozialpädagogik oder Wirtschaft.</span>
     </button>
 
-    <!-- Einbringungsverpflichtung: in Vorbereitung, daher nicht anklickbar -->
-    <div class="card disabled" aria-disabled="true">
-      <span class="tag"><span class="emoji" aria-hidden="true">📥</span>In Vorbereitung</span>
-      <div class="title">Einbringungsverpflichtung</div>
-      <p class="desc">Dieser Rechner folgt in Kürze.</p>
-    </div>
+    <!-- Einbringungsverpflichtung -->
+    <a class="card" href="Einbringung/">
+      <span class="tag"><span class="emoji" aria-hidden="true">📥</span>Einbringung</span>
+      <span class="title" style="display:block">Einbringungsverpflichtung</span>
+      <span class="desc" style="display:block">Welche Halbjahresergebnisse ins Abitur eingehen – nach Schwerpunkt und Prüfungsfächern.</span>
+    </a>
   </main>
 
   <noscript>
@@ -155,7 +155,8 @@
       <strong>Versetzungsrechner Einführungsphase:</strong><br>
       <a href="Versetzung/agrarwirtschaft.html">Agrarwirtschaft</a> ·
       <a href="Versetzung/sozialpaedagogik.html">Sozialpädagogik</a> ·
-      <a href="Versetzung/wirtschaft.html">Wirtschaft</a>
+      <a href="Versetzung/wirtschaft.html">Wirtschaft</a><br>
+      <a href="Einbringung/">Einbringungsverpflichtung</a>
     </p>
   </noscript>
 

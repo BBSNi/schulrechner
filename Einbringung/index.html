@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Einbringungsverpflichtung | Berufliches Gymnasium | BBS Nienburg</title>
+<meta name="description" content="Welche Halbjahresergebnisse in die Gesamtqualifikation des Abiturs eingehen – Berufliches Gymnasium der BBS Nienburg/Weser, Abitur 2027 bis 2029.">
+<style>
+  :root{
+    --bbs-blue:#005aa7; --bbs-green:#68c241; --text:#0a1b2b; --muted:#2c4054;
+    --radius:18px; --shadow:0 10px 30px rgba(0,0,0,.16); --ring:rgba(0,90,167,.22);
+    --bg1:#f7fbff; --bg2:#f0fff8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    color:var(--text); min-height:100vh; line-height:1.45;
+    background:
+      radial-gradient(900px 600px at 85% 10%, rgba(0,90,167,.10), transparent 60%),
+      radial-gradient(800px 500px at 10% 90%, rgba(104,194,65,.12), transparent 55%),
+      linear-gradient(135deg, var(--bg1), var(--bg2));
+    padding:2rem; display:grid; place-items:start center; grid-template-columns:minmax(0,1fr);
+  }
+  .wrap{ width:100%; max-width:1000px; }
+  header{ text-align:center; margin-bottom:1.5rem; position:relative; }
+  header img{max-width:220px;height:auto;display:block;margin:0 auto .8rem}
+  h1{ font-size:clamp(1.4rem,3.6vw,2rem); color:var(--bbs-blue); margin-bottom:.25rem; }
+  .sub{ color:var(--muted); }
+  .topbar{ position:absolute; left:0; top:0; transform:translateY(-10px); width:100%; display:flex; }
+  .btn-back{
+    appearance:none; background:#fff; color:var(--bbs-blue); border:2px solid rgba(0,90,167,.15);
+    padding:.55rem .8rem; border-radius:12px; font-weight:700; cursor:pointer; box-shadow:var(--shadow);
+    display:inline-flex; align-items:center; gap:.5rem; font:inherit; font-weight:700;
+  }
+  .btn-back:hover{ border-color:var(--bbs-blue); }
+  .btn-back:focus-visible{ outline:none; box-shadow:0 0 0 6px var(--ring), var(--shadow); }
+  .tag{
+    display:inline-flex; align-items:center; gap:.6rem; font-size:.9rem; font-weight:700; color:#fff;
+    padding:6px 12px; border-radius:999px; background:linear-gradient(135deg, var(--bbs-green), var(--bbs-blue)); margin:.5rem 0 1rem;
+  }
+  .card{ background:#fff; border-radius:var(--radius); padding:1.2rem 1.2rem 1rem; box-shadow:var(--shadow); margin-bottom:1rem; }
+  .card h3{ font-size:1.15rem; color:var(--bbs-blue); margin-bottom:.7rem }
+  .felder{ display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:.9rem 1.2rem; }
+  label.feld{ display:flex; flex-direction:column; gap:.35rem; font-weight:600; font-size:.95rem; }
+  label.feld small{ font-weight:400; color:#6b7280; }
+  select{
+    width:100%; padding:.55rem .6rem; border-radius:10px; border:1.5px solid #e5e7eb; background:#fff; color:var(--text); font:inherit;
+  }
+  select:focus{ outline:none; border-color:var(--bbs-blue); box-shadow:0 0 0 6px var(--ring) }
+  select:disabled{ background:#f6f8fa; color:#9ca3af; }
+  .note{ font-size:.92rem; color:var(--muted); margin-top:.7rem }
+  .warn{ background:#fffbeb; border:2px solid #fde68a; color:#92400e; border-radius:12px; padding:.7rem .9rem; margin-top:.8rem; font-weight:600; }
+  .kombi{ display:flex; flex-wrap:wrap; align-items:baseline; gap:.4rem 1rem; margin-bottom:.6rem; }
+  .kombi b{ font-size:1.6rem; color:var(--bbs-blue); }
+  table{ border-collapse:collapse; width:100%; background:#fff }
+  thead th{ background:#f8fbff; color:var(--muted); text-align:left; font-weight:700; border-bottom:1px solid #e9eef6; }
+  th, td{ padding:.55rem .5rem; vertical-align:top; border-top:1px solid #eef2f7 }
+  td.zahl{ font-weight:800; font-size:1.05rem; white-space:nowrap; }
+  tfoot td{ font-weight:800; border-top:2px solid #dbe4f0; }
+  .pf{ display:inline-block; font-size:.75rem; font-weight:800; color:#fff; background:var(--bbs-blue); border-radius:6px; padding:1px 6px; margin-left:.35rem; vertical-align:1px; }
+  .pf.ea{ background:#0f766e; }
+  .leise{ color:#6b7280; }
+  ul.regeln{ margin:.2rem 0 0 1.1rem; } ul.regeln li{ margin:.3rem 0; }
+  footer{ text-align:center; color:var(--muted); margin-top:.5rem; font-size:.9rem; }
+  footer a{ color:var(--bbs-blue); }
+  @media (max-width:720px){
+    body{ padding:1.2rem 1rem; }
+    header{ padding-top:2.4rem } .topbar{ transform:none; top:.25rem }
+    thead{ display:none }
+    table, tbody, tfoot, td, tr{ display:block }
+    tbody tr, tfoot tr{ display:grid; grid-template-columns:1fr auto; gap:.1rem .8rem; border:1px solid #e9eef6; border-radius:12px; margin-bottom:.45rem; padding:.45rem .65rem; background:#fff }
+    tbody td, tfoot td{ border:none; padding:0 }
+    td.zahl{ grid-column:2; grid-row:1; text-align:right; font-size:1.15rem; }
+    tbody td:nth-child(3){ grid-column:1 / -1; font-size:.88rem; color:#6b7280; }
+    tfoot td:empty{ display:none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="topbar">
+      <button class="btn-back" id="btnBack" type="button" aria-label="Zurück zur Startseite"><span aria-hidden="true">←</span> Zurück</button>
+    </div>
+    <img src="../Bilder/Logo.png" alt="Logo der BBS Nienburg" />
+    <h1>Einbringungsverpflichtung</h1>
+    <p class="sub">Welche Halbjahresergebnisse der Qualifikationsphase in die Gesamtqualifikation (Block I) eingehen.</p>
+    <div class="tag"><span aria-hidden="true">📥</span>Abitur 2027 bis 2029</div>
+    <p class="sub">Die Übersicht ist nicht rechtsverbindlich. Verbindliche Auskunft geben die Tutorinnen und Tutoren sowie die Abteilungsleitung.
+      Grundlage: § 15 Abs. 4 und Anlage 4 AVO-GOBAK, Anlage 7 § 7 BbS-VO, Prüfungsfachkombinationen der BBS Nienburg.</p>
+  </header>
+
+  <section class="card" aria-labelledby="h-wahl">
+    <h3 id="h-wahl">Schwerpunkt und Prüfungsfächer</h3>
+    <div class="felder">
+      <label class="feld">Schwerpunkt
+        <select id="sp">
+          <option value="">Bitte wählen …</option>
+          <option value="agrar">Agrarwirtschaft</option>
+          <option value="sozial">Sozialpädagogik</option>
+          <option value="wirtschaft">Wirtschaft</option>
+        </select>
+      </label>
+      <label class="feld">Spanisch verpflichtend?
+        <select id="sn">
+          <option value="nein">Nein – zweite Fremdsprache ist nachgewiesen</option>
+          <option value="ja">Ja – Spanisch in der Einführungsphase neu begonnen</option>
+        </select>
+        <small>Verpflichtend, wenn vor der Einführungsphase keine zweite Fremdsprache mindestens vier Jahre durchgehend belegt wurde.</small>
+      </label>
+      <label class="feld">1. Prüfungsfach (erhöhtes Niveau)
+        <select id="p1" disabled><option>– ergibt sich aus dem Schwerpunkt –</option></select>
+      </label>
+      <label class="feld">2. und 3. Prüfungsfach (erhöhtes Niveau)
+        <select id="p23" disabled></select>
+      </label>
+      <label class="feld">4. Prüfungsfach (grundlegendes Niveau, schriftlich)
+        <select id="p4" disabled></select>
+      </label>
+      <label class="feld">5. Prüfungsfach (grundlegendes Niveau, mündlich)
+        <select id="p5" disabled></select>
+      </label>
+    </div>
+    <p class="note">Angeboten werden nur Fächer, die zu einer Prüfungsfachkombination der BBS Nienburg führen.
+      Welches der beiden Fächer mit erhöhtem Niveau das 2. Prüfungsfach ist (doppelt gewertet), wird erst bei der Zulassung zur Abiturprüfung festgelegt.
+      Das 4. und 5. Prüfungsfach können bis zum Ende des 2. Halbjahres der Qualifikationsphase getauscht werden.</p>
+  </section>
+
+  <section class="card" aria-labelledby="h-erg" aria-live="polite">
+    <h3 id="h-erg">Ergebnis</h3>
+    <div id="ergebnis"><p class="leise">Bitte Schwerpunkt und alle Prüfungsfächer wählen.</p></div>
+  </section>
+
+  <section class="card" aria-labelledby="h-regeln">
+    <h3 id="h-regeln">Was außerdem für Block I gilt</h3>
+    <ul class="regeln">
+      <li>Es zählen genau <b>36 Halbjahresergebnisse</b> der Qualifikationsphase, darunter alle Ergebnisse der fünf Prüfungsfächer.</li>
+      <li>Die vier Ergebnisse im 1. und im 2. Prüfungsfach zählen <b>doppelt</b>.</li>
+      <li>Kein eingebrachtes Ergebnis darf <b>0 Punkte</b> haben; aus einem Fach zählen höchstens vier Ergebnisse.</li>
+      <li>Mindestens <b>29</b> der 36 Ergebnisse brauchen <b>5 Punkte oder mehr</b>, darunter mindestens 9 im 1. bis 3. Prüfungsfach.</li>
+      <li>In Block I sind insgesamt mindestens <b>200 Punkte</b> nötig.</li>
+    </ul>
+    <p class="note">Ab dem Abitur 2030 gelten neue Vorschriften (Oberstufenreform). Diese Übersicht wird dann angepasst.</p>
+  </section>
+
+  <footer><strong>BBS Nienburg/Weser</strong> · <a href="https://www.bbs-nienburg.de/abteilungen/abt-2-berufliches-gymnasium/">Berufliches Gymnasium</a></footer>
+</div>
+
+<script>
+/* ------------------------------------------------------------------
+   1) Fächer
+   ------------------------------------------------------------------ */
+const FACH = {
+  DE: "Deutsch", EN: "Englisch", SN: "Spanisch", MA: "Mathematik", BI: "Biologie",
+  BIF: "Berufliche Informatik", VW: "Volkswirtschaft", BV: "Betriebs- und Volkswirtschaft",
+  BRC: "Betriebswirtschaft mit Rechnungswesen-Controlling", AUT: "Agrar- und Umwelttechnologie", PP: "Pädagogik-Psychologie"
+};
+const SCHWERPUNKT = {
+  agrar:      { p1: "AUT", profil: "BV" },
+  sozial:     { p1: "PP",  profil: "BV" },
+  wirtschaft: { p1: "BRC", profil: "VW" }
+};
+
+/* ------------------------------------------------------------------
+   2) Prüfungsfachkombinationen der BBS Nienburg (Tabelle „Prüfungsfächer“ der Prüfungsfächerwahl)
+      [Nr, P2, P3, P4, P5]; sn = Liste für Lernende mit Spanisch-Verpflichtung
+   ------------------------------------------------------------------ */
+const K = (sp, sn, liste) => liste.map(([nr, p2, p3, p4, p5]) => ({ nr, sp, sn, p1: SCHWERPUNKT[sp].p1, p2, p3, p4, p5 }));
+const KOMBINATIONEN = [].concat(
+  K("agrar", true, [[1,"DE","EN","BV","BIF"],[2,"DE","EN","BV","MA"],[3,"DE","EN","BIF","BV"],[4,"DE","MA","BV","EN"],[5,"DE","MA","BV","BIF"],
+    [6,"DE","MA","BV","SN"],[7,"DE","MA","BIF","BV"],[8,"EN","MA","BV","DE"],[9,"EN","MA","BV","BIF"],[10,"EN","MA","BIF","BV"]]),
+  K("agrar", false, [[11,"DE","EN","BV","BIF"],[12,"DE","EN","BV","MA"],[13,"DE","EN","BIF","BV"],[14,"DE","MA","BV","EN"],[15,"DE","MA","BV","SN"],
+    [16,"DE","MA","BV","BIF"],[17,"DE","MA","BIF","BV"],[18,"EN","MA","BV","DE"],[19,"EN","MA","BV","BIF"],[20,"EN","MA","BIF","BV"]]),
+  K("sozial", true, [[21,"DE","EN","BV","BI"],[22,"DE","EN","BV","MA"],[23,"DE","EN","BIF","BV"],[24,"DE","EN","BIF","BI"],[25,"DE","EN","BIF","MA"],
+    [26,"DE","EN","BV","BIF"],[27,"DE","EN","BI","BIF"],[28,"DE","EN","BI","BV"],[29,"DE","MA","BV","BI"],[30,"DE","MA","BV","EN"],
+    [31,"DE","MA","BV","SN"],[32,"DE","MA","BIF","BV"],[33,"DE","MA","BIF","BI"],[34,"DE","MA","BIF","EN"],[35,"DE","MA","BIF","SN"],
+    [36,"DE","MA","BV","BIF"],[37,"DE","MA","BI","BIF"],[38,"DE","MA","BI","BV"],[39,"DE","BI","BV","EN"],[40,"DE","BI","BV","MA"],
+    [41,"DE","BI","BV","SN"],[42,"DE","BI","BIF","EN"],[43,"DE","BI","BIF","MA"],[44,"DE","BI","BIF","SN"],[45,"EN","MA","BV","BI"],
+    [46,"EN","MA","BV","DE"],[47,"EN","MA","BIF","BV"],[48,"EN","MA","BIF","BI"],[49,"EN","MA","BIF","DE"],[50,"EN","MA","BV","BIF"],
+    [51,"EN","MA","BI","BIF"],[52,"EN","MA","BI","BV"],[53,"EN","BI","BV","DE"],[54,"EN","BI","BV","MA"],[55,"EN","BI","BIF","DE"],[56,"EN","BI","BIF","MA"]]),
+  K("sozial", false, [[57,"DE","EN","BV","BI"],[58,"DE","EN","BV","MA"],[59,"DE","EN","BIF","BV"],[60,"DE","EN","BIF","BI"],[61,"DE","EN","BIF","MA"],
+    [62,"DE","EN","BV","BIF"],[63,"DE","EN","BI","BIF"],[64,"DE","EN","BI","BV"],[65,"DE","MA","BV","BI"],[66,"DE","MA","BV","EN"],
+    [67,"DE","MA","BV","SN"],[68,"DE","MA","BIF","BV"],[69,"DE","MA","BIF","BI"],[70,"DE","MA","BIF","EN"],[71,"DE","MA","BIF","SN"],
+    [72,"DE","MA","BV","BIF"],[73,"DE","MA","BI","BIF"],[74,"DE","MA","BI","BV"],[75,"DE","BI","BV","EN"],[76,"DE","BI","BV","MA"],
+    [77,"DE","BI","BV","SN"],[78,"DE","BI","BIF","EN"],[79,"DE","BI","BIF","MA"],[80,"DE","BI","BIF","SN"],[81,"EN","MA","BV","BI"],
+    [82,"EN","MA","BV","DE"],[83,"EN","MA","BIF","BV"],[84,"EN","MA","BIF","BI"],[85,"EN","MA","BIF","DE"],[86,"EN","MA","BV","BIF"],
+    [87,"EN","MA","BI","BIF"],[88,"EN","MA","BI","BV"],[89,"EN","BI","BV","DE"],[90,"EN","BI","BV","MA"],[91,"EN","BI","BIF","DE"],[92,"EN","BI","BIF","MA"]]),
+  K("wirtschaft", true, [[93,"DE","EN","BIF","BI"],[94,"DE","EN","BIF","MA"],[95,"DE","EN","BIF","VW"],[96,"DE","EN","BIF","SN"],[97,"DE","EN","VW","BI"],
+    [98,"DE","EN","VW","MA"],[99,"DE","EN","VW","BIF"],[100,"DE","EN","VW","SN"],[101,"DE","EN","BI","VW"],[102,"DE","EN","BI","BIF"],
+    [103,"DE","MA","BIF","BI"],[104,"DE","MA","BIF","EN"],[105,"DE","MA","BIF","VW"],[106,"DE","MA","BIF","SN"],[107,"DE","MA","VW","BI"],
+    [108,"DE","MA","VW","EN"],[109,"DE","MA","VW","SN"],[110,"DE","MA","VW","BIF"],[111,"DE","MA","BI","VW"],[112,"DE","MA","BI","BIF"],
+    [113,"EN","MA","BIF","BI"],[114,"EN","MA","BIF","DE"],[115,"EN","MA","BIF","VW"],[116,"EN","MA","BIF","SN"],[117,"EN","MA","VW","BI"],
+    [118,"EN","MA","VW","DE"],[119,"EN","MA","VW","SN"],[120,"EN","MA","VW","BIF"],[121,"EN","MA","BI","BIF"],[122,"EN","MA","BI","VW"]]),
+  K("wirtschaft", false, [[123,"DE","EN","BIF","BI"],[124,"DE","EN","BIF","MA"],[125,"DE","EN","BIF","VW"],[126,"DE","EN","BIF","SN"],[127,"DE","EN","VW","BI"],
+    [128,"DE","EN","VW","MA"],[129,"DE","EN","VW","BIF"],[130,"DE","EN","VW","SN"],[131,"DE","EN","BI","VW"],[132,"DE","EN","BI","BIF"],
+    [133,"DE","MA","BIF","BI"],[134,"DE","MA","BIF","EN"],[135,"DE","MA","BIF","SN"],[136,"DE","MA","BIF","VW"],[137,"DE","MA","VW","BI"],
+    [138,"DE","MA","VW","EN"],[139,"DE","MA","VW","SN"],[140,"DE","MA","VW","BIF"],[141,"DE","MA","BI","VW"],[142,"DE","MA","BI","BIF"],
+    [143,"EN","MA","BIF","BI"],[144,"EN","MA","BIF","DE"],[145,"EN","MA","BIF","VW"],[146,"EN","MA","BIF","SN"],[147,"EN","MA","VW","BI"],
+    [148,"EN","MA","VW","DE"],[149,"EN","MA","VW","SN"],[150,"EN","MA","VW","BIF"],[151,"EN","MA","BI","BIF"],[152,"EN","MA","BI","VW"]])
+);
+/* Abgeglichen mit den Einbringungsblättern der Prüfungsfächerwahl (Agrar_SN … Wirtschaft_ohne_SN), 2026-11-15. */
+
+/* ------------------------------------------------------------------
+   3) Einbringung nach § 15 Abs. 4 und Anlage 4 AVO-GOBAK
+   ------------------------------------------------------------------ */
+function einbringung(k) {
+  const sp = SCHWERPUNKT[k.sp], P = [k.p1, k.p2, k.p3, k.p4, k.p5];
+  const pf = f => P.includes(f);
+  const pfLabel = f => f === k.p1 ? "P1" : (f === k.p2 || f === k.p3) ? "P2/P3" : f === k.p4 ? "P4" : f === k.p5 ? "P5" : "";
+  const alle4 = "alle vier Halbjahre";
+  const zeilen = [];
+  const add = (fach, anzahl, hinweis, code) => zeilen.push({ fach, anzahl, hinweis, pf: code ? pfLabel(code) : "" });
+
+  /* Fremdsprachen (Anlage 4, Fußnote 2) */
+  const enP = pf("EN"), snP = pf("SN");
+  let en = 0, sn = 0, wahl = 2, kuerzeProfil = false, tauschHinweis = "";
+  if (enP && snP) {                       // fortgeführte und weitere Fremdsprache als Prüfungsfach
+    if (k.sp !== "wirtschaft") throw new Error("Kombination in diesem Schwerpunkt nicht vorgesehen");
+    en = 4; sn = 4; wahl = 0; kuerzeProfil = true;   // Fußnote 2 Sätze 3 und 4
+  } else if (k.sn) {                      // Spanisch verpflichtend (Fußnote 2 Sätze 1 und 2)
+    if (enP) { en = 4; sn = 2; wahl = 0; }           // die zwei Spanisch-Ergebnisse füllen den Wahlbereich
+    else { sn = 4; }
+  } else {                                // Spanisch nicht verpflichtend
+    if (snP) { sn = 4; }
+    else { en = 4; if (!enP) tauschHinweis = "Wer Spanisch freiwillig belegt hat, kann diese vier Ergebnisse auch in Spanisch einbringen."; }
+  }
+
+  add(FACH.DE, 4, alle4, "DE");
+  if (en) add(FACH.EN, en, enP ? alle4 : (tauschHinweis || alle4), "EN");
+  if (sn) add(FACH.SN, sn, sn === 4 ? alle4 : "zwei Halbjahresergebnisse nach Wahl (zählen als weitere Fremdsprache)", "SN");
+  add(FACH.MA, 4, alle4, "MA");
+  add(FACH[k.p1], 4, alle4, k.p1);
+  const profil = sp.profil;               // VW (Wirtschaft) bzw. BV (Gesundheit und Soziales)
+  let nProfil = 4, nBIF = 4;
+  if (kuerzeProfil) {                     // eines der Fächer VW oder BIF, das nicht Prüfungsfach ist, auf 2
+    if (!pf(profil)) nProfil = 2; else if (!pf("BIF")) nBIF = 2;
+  }
+  add(FACH[profil], nProfil, nProfil === 4 ? alle4 : "zwei Halbjahresergebnisse nach Wahl", profil);
+  add(FACH.BIF, nBIF, nBIF === 4 ? alle4 : "zwei Halbjahresergebnisse nach Wahl", "BIF");
+  add(pf("BI") ? FACH.BI : "Naturwissenschaft (Biologie bzw. belegte Naturwissenschaft)", 4, alle4 + " in derselben Naturwissenschaft", "BI");
+  add("Geschichte", 2, "1. und 2. Halbjahr");
+  add("Religion bzw. Werte und Normen", 2, "3. und 4. Halbjahr");
+  add("Praxis", 2, "1. und 2. Halbjahr");
+  if (wahl) add("Praxis, Sport oder weitere Fremdsprache", wahl, "zwei Ergebnisse aus einem dieser Fächer (Praxis: 3. und 4. Halbjahr) – in der Regel das bessere");
+  const summe = zeilen.reduce((s, z) => s + z.anzahl, 0);
+  return { zeilen, summe };
+}
+
+/* ------------------------------------------------------------------
+   4) Oberfläche
+   ------------------------------------------------------------------ */
+const $ = id => document.getElementById(id);
+const paarText = (a, b) => FACH[a] + " und " + FACH[b];
+function optionen(sel, werte, platzhalter) {
+  const alt = sel.value;
+  sel.innerHTML = `<option value="">${platzhalter}</option>` + werte.map(([w, t]) => `<option value="${w}">${t}</option>`).join("");
+  sel.disabled = !werte.length;
+  if (werte.some(([w]) => w === alt)) sel.value = alt;
+}
+function auswahl() {
+  const sp = $("sp").value, sn = $("sn").value === "ja";
+  const kand = KOMBINATIONEN.filter(k => k.sp === sp && k.sn === sn);
+  $("p1").innerHTML = `<option>${sp ? FACH[SCHWERPUNKT[sp].p1] : "– ergibt sich aus dem Schwerpunkt –"}</option>`;
+
+  const paare = [...new Map(kand.map(k => [k.p2 + "|" + k.p3, paarText(k.p2, k.p3)])).entries()];
+  optionen($("p23"), sp ? paare : [], sp ? "Bitte wählen …" : "Bitte erst Schwerpunkt wählen …");
+  const k23 = kand.filter(k => k.p2 + "|" + k.p3 === $("p23").value);
+  optionen($("p4"), $("p23").value ? [...new Set(k23.map(k => k.p4))].map(f => [f, FACH[f]]) : [], $("p23").value ? "Bitte wählen …" : "Bitte erst 2./3. Prüfungsfach wählen …");
+  const k4 = k23.filter(k => k.p4 === $("p4").value);
+  optionen($("p5"), $("p4").value ? [...new Set(k4.map(k => k.p5))].map(f => [f, FACH[f]]) : [], $("p4").value ? "Bitte wählen …" : "Bitte erst 4. Prüfungsfach wählen …");
+  const treffer = k4.find(k => k.p5 === $("p5").value);
+  zeigen(treffer);
+}
+function zeigen(k) {
+  const ziel = $("ergebnis");
+  if (!k) { ziel.innerHTML = `<p class="leise">Bitte Schwerpunkt und alle Prüfungsfächer wählen.</p>`; return; }
+  const e = einbringung(k);
+  const zeile = z => `<tr><td data-label="Fach">${z.fach}${z.pf ? `<span class="pf${["P1","P2/P3"].includes(z.pf) ? " ea" : ""}">${z.pf}</span>` : ""}</td>
+    <td class="zahl" data-label="Halbjahresergebnisse">${z.anzahl}</td><td data-label="Welche / Hinweis">${z.hinweis}</td></tr>`;
+  ziel.innerHTML = `<div class="kombi"><span>Kombination Nr.</span><b>${k.nr}</b><span class="leise">laut Prüfungsfächerwahl der BBS Nienburg</span></div>
+    <table><thead><tr><th>Fach</th><th>Halbjahresergebnisse</th><th>Welche / Hinweis</th></tr></thead>
+    <tbody>${e.zeilen.map(zeile).join("")}</tbody>
+    <tfoot><tr><td>Zusammen</td><td class="zahl">${e.summe}</td><td></td></tr></tfoot></table>
+    ${e.summe !== 36 ? `<div class="warn">Die Summe ergibt nicht 36 – bitte bei der Abteilungsleitung nachfragen.</div>` : ""}
+    <p class="note">Am Ende jedes Halbjahres der Qualifikationsphase gibt es eine vollständige Notenübersicht.</p>`;
+}
+["sp", "sn", "p23", "p4", "p5"].forEach((id, i, alle) => $(id).addEventListener("change", () => {
+  alle.slice(i + 1).forEach(n => { if (["p23", "p4", "p5"].includes(n)) $(n).value = ""; });
+  auswahl();
+}));
+$("btnBack").addEventListener("click", () => {
+  if (document.referrer && new URL(document.referrer).origin === location.origin && history.length > 1) history.back();
+  else location.href = "../index.html";
+});
+auswahl();
+</script>
+</body>
+</html>
