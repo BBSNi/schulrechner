@@ -74,6 +74,7 @@
   input.p.unter5{ background:var(--warnbg); border-color:#f59e0b; }
   input.p.null{ background:var(--badbg); border-color:var(--bad); }
   input.p.falsch{ border-color:var(--bad); box-shadow:0 0 0 3px rgba(185,28,28,.15); }
+  input.p.abgelehnt{ border-color:var(--bad); box-shadow:0 0 0 4px rgba(185,28,28,.18); }
   input.p.zaehltnicht{ opacity:.45; text-decoration:line-through; }
   .strich{ color:#cbd5e1; }
   .wahlsel{ margin-top:.3rem; padding:.3rem .4rem; font-size:.88rem; }
@@ -254,8 +255,19 @@ function auswahl() {
 }
 
 /* ---------- Eingabetabellen ---------- */
-const feld = (key, label) => `<input class="p" inputmode="numeric" type="number" min="0" max="15" step="1" data-key="${key}"
-  aria-label="${label}" value="${werte[key] ?? ""}">`;
+const feld = (key, label) => `<input class="p" type="text" inputmode="numeric" maxlength="2" autocomplete="off" pattern="[0-9]*" data-key="${key}"
+  aria-label="${label} (0 bis 15 Punkte)" value="${werte[key] ?? ""}">`;
+/* Nur ganze Zahlen von 0 bis 15 zulassen: andere Zeichen fallen weg, zu große Werte werden nicht übernommen */
+function bereinigen(inp) {
+  const alt = werte[inp.dataset.key] ?? "";
+  let t = inp.value.replace(/\D/g, "").slice(0, 2);
+  if (t !== "" && Number(t) > 15) t = alt;
+  if (inp.value !== t) {
+    inp.value = t;
+    inp.classList.add("abgelehnt"); setTimeout(() => inp.classList.remove("abgelehnt"), 400);
+  }
+  return t;
+}
 function zeilenListe() {
   return einbringung(kombi).zeilen.map(z => {
     if (z.code !== "WAHL") return z;
@@ -283,7 +295,7 @@ function aufbauen() {
         <td class="summe" data-summe="${z.code}">–</td></tr>`;
     }).join("")}</tbody></table>
     <div class="legende"><span class="l5">unter 5 Punkte</span><span class="l0">0 Punkte</span><span class="ln">zählt nicht (nicht unter den besten)</span></div>
-    <p class="note">Punkte von 0 bis 15 eintragen. Leere Felder gelten als noch offen.</p>`;
+    <p class="note">Nur ganze Punkte von 0 bis 15 möglich. Leere Felder gelten als noch offen.</p>`;
 
   const pf = [["P1", kombi.p1, "s"], ["P2", kombi.p2, "s"], ["P3", kombi.p3, "s"], ["P4", kombi.p4, "s"], ["P5", kombi.p5, "m"]];
   $("b2inhalt").innerHTML = `
@@ -428,7 +440,7 @@ function laden() {
   auswahl();
 }));
 document.addEventListener("input", e => {
-  if (e.target.matches("input.p")) { werte[e.target.dataset.key] = e.target.value; rechnen(); }
+  if (e.target.matches("input.p")) { werte[e.target.dataset.key] = bereinigen(e.target); rechnen(); }
 });
 document.addEventListener("change", e => {
   if (e.target.id === "wahlsel") { wahlFach = e.target.value; aufbauen(); }
