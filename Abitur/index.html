@@ -59,8 +59,6 @@
   .tab th.hj, .tab td.hj{ text-align:center; width:4.4rem; }
   .tab th.breit, .tab td.breit{ width:7.5rem; }
   .tab th small{ display:block; font-weight:400; font-size:.75rem; color:#6b7280; }
-  .tab th.breit{ font-weight:400; }
-  .tab th.breit small{ font-weight:700; color:var(--muted); }
   .tab td.summe, .tab th.summe{ text-align:right; width:4.5rem; font-weight:800; }
   .fach{ font-weight:600; }
   .fach small{ display:block; font-weight:400; color:#6b7280; font-size:.82rem; }
@@ -289,7 +287,7 @@ function aufbauen() {
 
   const pf = [["P1", kombi.p1, "s"], ["P2", kombi.p2, "s"], ["P3", kombi.p3, "s"], ["P4", kombi.p4, "s"], ["P5", kombi.p5, "m"]];
   $("b2inhalt").innerHTML = `
-    <table class="tab"><thead><tr><th>Prüfungsfach</th><th class="hj">schriftlich</th><th class="hj breit">zusätzlich mündlich<small>bei P5: mündliche Prüfung</small></th><th class="summe">Ergebnis</th></tr></thead>
+    <table class="tab"><thead><tr><th>Prüfungsfach</th><th class="hj">schriftlich</th><th class="hj breit">bei P5: mündliche Prüfung<small>zusätzlich mündlich</small></th><th class="summe">Ergebnis</th></tr></thead>
     <tbody>${pf.map(([p, f, art]) => `<tr><td class="fach">${FACH[f]}<span class="pf${["P1","P2","P3"].includes(p) ? " ea" : ""}">${p}</span>
         <small>${art === "s" ? "zusätzlich mündlich: wenn es noch nicht reicht oder zur Verbesserung" : "mündliche Prüfung"}</small></td>
         <td class="hj" data-label="schriftlich">${art === "s" ? feld("b2-" + p + "s", p + " schriftlich") : `<span class="strich" aria-hidden="true">–</span>`}</td>
