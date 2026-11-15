@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Versetzungsrechner Einführungsphase | Berufliches Gymnasium | BBS Nienburg</title>
+<meta name="description" content="Versetzungsrechner für die Einführungsphase des Beruflichen Gymnasiums der BBS Nienburg/Weser – Agrarwirtschaft, Sozialpädagogik, Wirtschaft.">
+<style>
+  :root{
+    --bbs-blue:#005aa7; --bbs-green:#68c241; --text:#0a1b2b; --muted:#2c4054;
+    --radius:18px; --shadow:0 10px 30px rgba(0,0,0,.16); --ring:rgba(0,90,167,.22);
+    --bg1:#f7fbff; --bg2:#f0fff8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    color:var(--text); min-height:100vh; line-height:1.45;
+    background:
+      radial-gradient(900px 600px at 85% 10%, rgba(0,90,167,.10), transparent 60%),
+      radial-gradient(800px 500px at 10% 90%, rgba(104,194,65,.12), transparent 55%),
+      linear-gradient(135deg, var(--bg1), var(--bg2));
+    padding:2rem; display:grid; place-items:start center; grid-template-columns:minmax(0,1fr);
+  }
+  .wrap{ width:100%; max-width:900px; }
+  header{ text-align:center; margin-bottom:1.5rem; position:relative; }
+  header img{max-width:220px;height:auto;display:block;margin:0 auto .8rem}
+  h1{ font-size:clamp(1.4rem,3.6vw,2rem); color:var(--bbs-blue); margin-bottom:.25rem; }
+  .sub{ color:var(--muted); }
+  .topbar{ position:absolute; left:0; top:0; transform:translateY(-10px); width:100%; display:flex; }
+  .btn-back{
+    appearance:none; background:#fff; color:var(--bbs-blue); border:2px solid rgba(0,90,167,.15);
+    padding:.55rem .8rem; border-radius:12px; cursor:pointer; box-shadow:var(--shadow);
+    display:inline-flex; align-items:center; gap:.5rem; font:inherit; font-weight:700;
+  }
+  .btn-back:hover{ border-color:var(--bbs-blue); }
+  .btn-back:focus-visible{ outline:none; box-shadow:0 0 0 6px var(--ring), var(--shadow); }
+  .tag{
+    display:inline-flex; align-items:center; gap:.6rem; font-size:.9rem; font-weight:700; color:#fff;
+    padding:6px 12px; border-radius:999px; background:linear-gradient(135deg, var(--bbs-green), var(--bbs-blue)); margin:.5rem 0 .2rem;
+  }
+  .wahl{ display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:1rem; margin-bottom:1rem; }
+  a.choice{
+    display:block; background:#fff; border-radius:var(--radius); padding:1.3rem 1.2rem; box-shadow:var(--shadow);
+    text-decoration:none; color:var(--text); border:2px solid transparent; transition:transform .15s, border-color .15s;
+  }
+  a.choice:hover{ transform:translateY(-2px); border-color:var(--bbs-blue); }
+  a.choice:focus-visible{ outline:none; box-shadow:0 0 0 6px var(--ring), var(--shadow); }
+  a.choice strong{ display:block; font-size:1.2rem; color:var(--bbs-blue); margin-bottom:.2rem; }
+  a.choice span{ color:var(--muted); font-size:.95rem; }
+  footer{ text-align:center; color:var(--muted); margin-top:.5rem; font-size:.9rem; line-height:1.6; }
+  footer a{ color:var(--bbs-blue); }
+  @media (max-width:720px){
+    body{ padding:1.2rem 1rem; }
+    header{ padding-top:2.4rem } .topbar{ transform:none; top:.25rem }
+  }
+  @media (prefers-reduced-motion: reduce){ *{ transition:none !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="topbar">
+      <button class="btn-back" id="btnBack" type="button" aria-label="Zurück zum BG-Dashboard"><span aria-hidden="true">←</span> Zurück</button>
+    </div>
+    <img src="../Bilder/Logo.png" alt="Logo der BBS Nienburg" />
+    <h1>Versetzungsrechner</h1>
+    <div class="tag"><span aria-hidden="true">🎓</span>Einführungsphase</div>
+    <p class="sub">Reicht es für die Qualifikationsphase? Bitte den Schwerpunkt wählen.</p>
+  </header>
+
+  <main class="wahl" aria-label="Schwerpunkt wählen">
+    <a class="choice" href="agrarwirtschaft.html"><strong>Agrarwirtschaft</strong><span>Gesundheit und Soziales</span></a>
+    <a class="choice" href="sozialpaedagogik.html"><strong>Sozialpädagogik</strong><span>Gesundheit und Soziales</span></a>
+    <a class="choice" href="wirtschaft.html"><strong>Wirtschaft</strong><span>Wirtschaft</span></a>
+  </main>
+
+  <footer>
+    <strong>BBS Nienburg/Weser</strong> · <a href="../impressum.html">Impressum</a><br>
+    Berechnung ohne Gewähr – verbindlich entscheidet die Klassenkonferenz.
+  </footer>
+</div>
+<script>
+document.getElementById("btnBack").addEventListener("click", () => {
+  if (document.referrer && new URL(document.referrer).origin === location.origin && history.length > 1) history.back();
+  else location.href = "https://bbsni.github.io/BG-Dashboard/";
+});
+</script>
+</body>
+</html>

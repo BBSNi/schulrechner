@@ -80,7 +80,7 @@
 <div class="wrap">
   <header>
     <div class="topbar">
-      <button class="btn-back" id="btnBack" type="button" aria-label="Zurück zur Startseite"><span aria-hidden="true">←</span> Zurück</button>
+      <button class="btn-back" id="btnBack" type="button" aria-label="Zurück zum BG-Dashboard"><span aria-hidden="true">←</span> Zurück</button>
     </div>
     <img src="../Bilder/Logo.png" alt="Logo der BBS Nienburg" />
     <h1>Einbringungsverpflichtung</h1>
@@ -143,7 +143,7 @@
     <p class="note">Ab dem Abitur 2030 gelten neue Vorschriften (Oberstufenreform). Diese Übersicht wird dann angepasst.</p>
   </section>
 
-  <footer><strong>BBS Nienburg/Weser</strong> · <a href="https://www.bbs-nienburg.de/abteilungen/abt-2-berufliches-gymnasium/">Berufliches Gymnasium</a></footer>
+  <footer><strong>BBS Nienburg/Weser</strong> · <a href="../impressum.html">Impressum</a></footer>
 </div>
 
 <script>
@@ -277,7 +277,7 @@ function zeigen(k) {
   const e = einbringung(k);
   const zeile = z => `<tr><td data-label="Fach">${z.fach}${z.pf ? `<span class="pf${["P1","P2/P3"].includes(z.pf) ? " ea" : ""}">${z.pf}</span>` : ""}</td>
     <td class="zahl" data-label="Halbjahresergebnisse">${z.anzahl}</td><td data-label="Welche / Hinweis">${z.hinweis}</td></tr>`;
-  ziel.innerHTML = `<div class="kombi"><span>Kombination Nr.</span><b>${k.nr}</b><span class="leise">laut Prüfungsfächerwahl der BBS Nienburg</span></div>
+  ziel.innerHTML = `<div class="kombi"><span>Kombination Nr.</span><b>${k.nr}</b></div>
     <table><thead><tr><th>Fach</th><th>Halbjahresergebnisse</th><th>Welche / Hinweis</th></tr></thead>
     <tbody>${e.zeilen.map(zeile).join("")}</tbody>
     <tfoot><tr><td>Zusammen</td><td class="zahl">${e.summe}</td><td></td></tr></tfoot></table>
@@ -290,7 +290,7 @@ function zeigen(k) {
 }));
 $("btnBack").addEventListener("click", () => {
   if (document.referrer && new URL(document.referrer).origin === location.origin && history.length > 1) history.back();
-  else location.href = "../index.html";
+  else location.href = "https://bbsni.github.io/BG-Dashboard/";
 });
 auswahl();
 </script>

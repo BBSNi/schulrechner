@@ -6,11 +6,13 @@ Statische Webseite (nur HTML, CSS und JavaScript, kein Server nötig) mit Rechne
 
 | Pfad | Zweck | Stand |
 |---|---|---|
-| `index.html` | Startseite mit Auswahl der Rechner | überarbeitet 2026-11-15 |
+| `index.html` | Weiterleitung zum BG-Dashboard (alte Adresse und QR-Codes bleiben gültig) | 2026-11-15 |
+| `Versetzung/index.html` | Versetzungsrechner Einführungsphase – Auswahl des Schwerpunkts (Ziel der Dashboard-Kachel) | neu 2026-11-15 |
 | `Versetzung/agrarwirtschaft.html` | Versetzungsrechner Einführungsphase – Agrarwirtschaft | überarbeitet 2026-11-15 |
 | `Versetzung/sozialpaedagogik.html` | Versetzungsrechner Einführungsphase – Sozialpädagogik | überarbeitet 2026-11-15 |
 | `Versetzung/wirtschaft.html` | Versetzungsrechner Einführungsphase – Wirtschaft | überarbeitet 2026-11-15 |
 | `Einbringung/index.html` | Einbringungsverpflichtung (Abitur 2027–2029) – Kombinationen der BBS Nienburg, Regeln nach § 15 Abs. 4 / Anlage 4 AVO-GOBAK | neu 2026-11-15 |
+| `impressum.html` | Impressum | neu 2026-11-15 |
 | `Bilder/Logo.png` | Schullogo | |
 
 Nicht enthalten (liegen nur in der lokalen Sicherung `Original_2026-11-15/`):

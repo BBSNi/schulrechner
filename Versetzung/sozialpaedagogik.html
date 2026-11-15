@@ -123,7 +123,7 @@
   <div class="wrap">
     <header>
       <div class="topbar">
-        <button class="btn-back" id="btnBack" type="button" aria-label="Zurück zur Startseite">
+        <button class="btn-back" id="btnBack" type="button" aria-label="Zurück zur Auswahl">
           <span class="icon" aria-hidden="true">←</span>
           Zurück
         </button>
@@ -494,17 +494,17 @@
     </div>
 
     <footer style="text-align:center;color:var(--muted);margin-top:.5rem">
-      <small><strong>BBS Nienburg/Weser</strong> · <a href="https://www.bbs-nienburg.de/abteilungen/abt-2-berufliches-gymnasium/" style="color:var(--bbs-blue)">Berufliches Gymnasium</a></small>
+      <small><strong>BBS Nienburg/Weser</strong> · <a href="../impressum.html" style="color:var(--bbs-blue)">Impressum</a></small>
     </footer>
   </div>
 
 <script>
-/* Zurück-Button: erst history.back(), sonst index.html */
+/* Zurück-Button: erst history.back(), sonst Auswahl der Schwerpunkte */
 document.getElementById('btnBack').addEventListener('click', function(){
   if (document.referrer && new URL(document.referrer).origin === location.origin && history.length > 1){
     history.back();
   } else {
-    location.href = '../index.html';
+    location.href = 'index.html';
   }
 });
 

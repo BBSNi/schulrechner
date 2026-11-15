@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Impressum | Schulrechner | BBS Nienburg</title>
+<meta name="robots" content="noindex">
+<style>
+  :root{
+    --bbs-blue:#005aa7; --bbs-green:#68c241; --text:#0a1b2b; --muted:#2c4054;
+    --radius:18px; --shadow:0 10px 30px rgba(0,0,0,.16); --ring:rgba(0,90,167,.22);
+    --bg1:#f7fbff; --bg2:#f0fff8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    color:var(--text); min-height:100vh; line-height:1.5;
+    background:
+      radial-gradient(900px 600px at 85% 10%, rgba(0,90,167,.10), transparent 60%),
+      radial-gradient(800px 500px at 10% 90%, rgba(104,194,65,.12), transparent 55%),
+      linear-gradient(135deg, var(--bg1), var(--bg2));
+    padding:2rem; display:grid; place-items:start center; grid-template-columns:minmax(0,1fr);
+  }
+  .wrap{ width:100%; max-width:760px; }
+  header{ text-align:center; margin-bottom:1.5rem; position:relative; }
+  header img{max-width:220px;height:auto;display:block;margin:0 auto .8rem}
+  h1{ font-size:clamp(1.4rem,3.6vw,2rem); color:var(--bbs-blue); }
+  .topbar{ position:absolute; left:0; top:0; transform:translateY(-10px); width:100%; display:flex; }
+  .btn-back{
+    appearance:none; background:#fff; color:var(--bbs-blue); border:2px solid rgba(0,90,167,.15);
+    padding:.55rem .8rem; border-radius:12px; cursor:pointer; box-shadow:var(--shadow);
+    display:inline-flex; align-items:center; gap:.5rem; font:inherit; font-weight:700;
+  }
+  .btn-back:hover{ border-color:var(--bbs-blue); }
+  .btn-back:focus-visible{ outline:none; box-shadow:0 0 0 6px var(--ring), var(--shadow); }
+  .card{ background:#fff; border-radius:var(--radius); padding:1.2rem; box-shadow:var(--shadow); margin-bottom:1rem; }
+  .card h2{ font-size:1.1rem; color:var(--bbs-blue); margin-bottom:.5rem }
+  .card p + p{ margin-top:.6rem }
+  a{ color:var(--bbs-blue); }
+  @media (max-width:720px){
+    body{ padding:1.2rem 1rem; }
+    header{ padding-top:2.4rem } .topbar{ transform:none; top:.25rem }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="topbar">
+      <button class="btn-back" id="btnBack" type="button" aria-label="Zurück"><span aria-hidden="true">←</span> Zurück</button>
+    </div>
+    <img src="Bilder/Logo.png" alt="Logo der BBS Nienburg" />
+    <h1>Impressum</h1>
+  </header>
+
+  <section class="card">
+    <h2>Anbieter</h2>
+    <p>Berufsbildende Schulen des Landkreises Nienburg/Weser<br>
+      Berliner Ring 45, 31582 Nienburg/Weser<br>
+      Telefon 05021 609-0 · E-Mail <a href="mailto:bbs@bbs-nienburg.de">bbs@bbs-nienburg.de</a></p>
+    <p>Schulträger: Landkreis Nienburg/Weser</p>
+  </section>
+
+  <section class="card">
+    <h2>Hinweise</h2>
+    <p>Die Rechner sind eine Orientierungshilfe und nicht rechtsverbindlich.
+      Verbindliche Auskunft geben die Tutorinnen und Tutoren sowie die Abteilungsleitung.</p>
+    <p>Alle Berechnungen laufen im eigenen Browser. Eingaben werden weder gespeichert noch übertragen.
+      Die Seiten liegen bei GitHub Pages (GitHub Inc.). GitHub kann beim Aufruf technische Daten wie die IP-Adresse protokollieren.</p>
+  </section>
+</div>
+<script>
+document.getElementById("btnBack").addEventListener("click", () => {
+  if (document.referrer && new URL(document.referrer).origin === location.origin && history.length > 1) history.back();
+  else location.href = "https://bbsni.github.io/BG-Dashboard/";
+});
+</script>
+</body>
+</html>
