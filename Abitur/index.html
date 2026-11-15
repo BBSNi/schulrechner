@@ -57,6 +57,8 @@
   .tab th{ background:#f8fbff; color:var(--muted); text-align:left; font-weight:700; font-size:.9rem; border-bottom:1px solid #e9eef6; padding:.5rem .4rem; }
   .tab td{ padding:.4rem .4rem; border-top:1px solid #eef2f7; vertical-align:middle; }
   .tab th.hj, .tab td.hj{ text-align:center; width:4.4rem; }
+  .tab th.breit, .tab td.breit{ width:7.5rem; }
+  .tab th small{ display:block; font-weight:400; font-size:.75rem; color:#6b7280; }
   .tab td.summe, .tab th.summe{ text-align:right; width:4.5rem; font-weight:800; }
   .fach{ font-weight:600; }
   .fach small{ display:block; font-weight:400; color:#6b7280; font-size:.82rem; }
@@ -118,7 +120,7 @@
              border:1px solid #e9eef6; border-radius:12px; padding:.5rem .55rem; margin-bottom:.45rem; }
     .tab td{ border:none; padding:0; }
     .tab td.fach{ grid-column:1 / -1; }
-    .tab td.hj{ width:auto; }
+    .tab td.hj, .tab td.breit{ width:auto; }
     .tab td.hj::before{ content:attr(data-label); display:block; font-size:.72rem; color:#6b7280; text-align:center; }
     .tab td.summe{ width:auto; min-width:2.6rem; }
     input.p{ width:100%; max-width:4rem; }
@@ -198,7 +200,7 @@
     <ul class="regeln">
       <li><b>Block I:</b> 36 Halbjahresergebnisse; die Ergebnisse im 1. und 2. Prüfungsfach zählen doppelt (zusammen 44 Wertungen). Ergebnis Block I = 40 × Punktsumme ÷ 44, gerundet (höchstens 600).</li>
       <li><b>Zulassung:</b> mindestens 200 Punkte in Block I, mindestens 29 der 36 Ergebnisse mit 5 Punkten oder mehr, davon mindestens 9 im 1. bis 3. Prüfungsfach; kein eingebrachtes Ergebnis mit 0 Punkten.</li>
-      <li><b>Block II:</b> jedes Prüfungsergebnis zählt vierfach (höchstens 300). Mit mündlicher Zusatzprüfung: (8 × schriftlich + 4 × mündlich) ÷ 3, gerundet.</li>
+      <li><b>Block II:</b> jedes Prüfungsergebnis zählt vierfach (höchstens 300). Mit zusätzlicher mündlicher Prüfung: (8 × schriftlich + 4 × mündlich) ÷ 3, gerundet.</li>
       <li><b>Bestanden:</b> in Block II mindestens 100 Punkte und in drei Prüfungsfächern jeweils mindestens 20 Punkte (also 5 Punkte in einfacher Wertung).</li>
       <li><b>Durchschnittsnote</b> nach der Tabelle der Anlage 2 (300 Punkte = 4,0; ab 823 Punkten = 1,0).</li>
       <li>Wo mehr Halbjahresergebnisse eingetragen sind als zählen (z. B. „2 nach Wahl“), nimmt der Rechner die besten.</li>
@@ -285,13 +287,13 @@ function aufbauen() {
 
   const pf = [["P1", kombi.p1, "s"], ["P2", kombi.p2, "s"], ["P3", kombi.p3, "s"], ["P4", kombi.p4, "s"], ["P5", kombi.p5, "m"]];
   $("b2inhalt").innerHTML = `
-    <table class="tab"><thead><tr><th>Prüfungsfach</th><th class="hj">schriftlich</th><th class="hj">mündlich</th><th class="summe">Ergebnis</th></tr></thead>
+    <table class="tab"><thead><tr><th>Prüfungsfach</th><th class="hj">schriftlich</th><th class="hj breit">zusätzlich mündlich<small>bei P5: mündliche Prüfung</small></th><th class="summe">Ergebnis</th></tr></thead>
     <tbody>${pf.map(([p, f, art]) => `<tr><td class="fach">${FACH[f]}<span class="pf${["P1","P2","P3"].includes(p) ? " ea" : ""}">${p}</span>
-        <small>${art === "s" ? "mündlich nur bei Zusatzprüfung" : "mündliche Prüfung"}</small></td>
+        <small>${art === "s" ? "zusätzlich mündlich: wenn es noch nicht reicht oder zur Verbesserung" : "mündliche Prüfung"}</small></td>
         <td class="hj" data-label="schriftlich">${art === "s" ? feld("b2-" + p + "s", p + " schriftlich") : `<span class="strich" aria-hidden="true">–</span>`}</td>
-        <td class="hj" data-label="mündlich">${feld("b2-" + p + "m", p + " mündlich")}</td>
+        <td class="hj breit" data-label="${art === "s" ? "zusätzlich mündlich" : "mündlich"}">${feld("b2-" + p + "m", p + (art === "s" ? " zusätzlich mündlich" : " mündlich"))}</td>
         <td class="summe" data-summe="b2-${p}">–</td></tr>`).join("")}</tbody></table>
-    <p class="note">Ergebnis = Prüfungspunkte × 4. Mit mündlicher Zusatzprüfung: (8 × schriftlich + 4 × mündlich) ÷ 3, gerundet.</p>`;
+    <p class="note">Ergebnis = Prüfungspunkte × 4. Mit zusätzlicher mündlicher Prüfung: (8 × schriftlich + 4 × mündlich) ÷ 3, gerundet.</p>`;
   rechnen();
 }
 
@@ -392,7 +394,7 @@ function rechnen() {
     <div class="kennzahlen">
       <div class="kz"><span>Block I</span><b>${komplett1 ? E1 : "–"}</b><small>${komplett1 ? "von 600" : `${anzahl} von 36 Ergebnissen eingetragen`}</small></div>
       <div class="kz"><span>Block II</span><b>${komplett2 ? E2 : "–"}</b><small>${komplett2 ? "von 300" : `${5 - offen2} von 5 Prüfungen eingetragen`}</small></div>
-      <div class="kz gross"><span>Gesamt / Durchschnittsnote</span><b>${zugelassen && bestanden2 ? `${E1 + E2} · ${note(E1 + E2)}` : "–"}</b><small>von 900 Punkten</small></div>
+      <div class="kz gross"><span>Gesamt / Durchschnittsnote</span><b>${zugelassen && bestanden2 ? `${E1 + E2} / ${note(E1 + E2)}` : "–"}</b><small>von 900 Punkten</small></div>
     </div>
     <h4>Zulassung (Block I)</h4><ul class="bed">${b1.join("")}</ul>
     <h4>Bestehen (Block II)</h4><ul class="bed">${b2.join("")}</ul>
