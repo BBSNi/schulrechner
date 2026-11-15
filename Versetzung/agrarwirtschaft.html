@@ -1,0 +1,662 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Versetzungsrechner – Agrarwirtschaft | Berufliches Gymnasium | BBS Nienburg</title>
+<meta name="description" content="Versetzungsrechner für die Einführungsphase im Schwerpunkt Agrarwirtschaft des Beruflichen Gymnasiums der BBS Nienburg/Weser.">
+
+<style>
+  :root{
+    --bbs-blue:#005aa7;
+    --bbs-green:#68c241;
+    --text:#0a1b2b;
+    --muted:#2c4054;
+    --radius:18px;
+    --shadow:0 10px 30px rgba(0,0,0,.16);
+    --ring:rgba(0,90,167,.22);
+    --bg1:#f7fbff;
+    --bg2:#f0fff8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+
+  body{
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    color:var(--text);
+    min-height:100vh;
+    background:
+      radial-gradient(900px 600px at 85% 10%, rgba(0,90,167,.10), transparent 60%),
+      radial-gradient(800px 500px at 10% 90%, rgba(104,194,65,.12), transparent 55%),
+      linear-gradient(135deg, var(--bg1), var(--bg2));
+    padding: 2rem;
+    display: grid;
+    place-items: start center;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .wrap{ width:100%; max-width:1000px; }
+
+  /* Header + Back */
+  header{ text-align:center; margin-bottom:1.5rem; position:relative; }
+  header img{max-width:220px;height:auto;display:block;margin:0 auto .8rem}
+  h1{ font-size: clamp(1.4rem, 3.6vw, 2rem); color: var(--bbs-blue); margin-bottom: .25rem; }
+  .sub{ color:var(--muted); }
+  .topbar{
+    position:absolute; left:0; top:0; transform:translateY(-10px);
+    width:100%; display:flex; justify-content:flex-start;
+  }
+  .btn-back{
+    appearance:none; border:none; background:#fff; color:var(--bbs-blue);
+    border:2px solid rgba(0,90,167,.15);
+    padding:.55rem .8rem; border-radius:12px; font-weight:700; cursor:pointer;
+    box-shadow: var(--shadow);
+    display:inline-flex; align-items:center; gap:.5rem;
+    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  }
+  .btn-back:hover{ transform:translateY(-2px); box-shadow:0 14px 30px rgba(0,0,0,.2); border-color:var(--bbs-blue); }
+  .btn-back:focus-visible{ outline:none; box-shadow:0 0 0 6px var(--ring), var(--shadow); }
+  .btn-back .icon{ font-size:1.05rem; }
+
+  /* Page tag */
+  .tag{
+    display:inline-flex;align-items:center;gap:.6rem;
+    font-size:.9rem;font-weight:700;color:#fff;
+    padding:6px 12px;border-radius:999px;
+    background: linear-gradient(135deg, var(--bbs-green), var(--bbs-blue));
+    margin:.5rem 0 1rem;
+  }
+  .emoji{font-size:1.1rem}
+
+  /* Cards */
+  .card{
+    background:#fff; border:2px solid transparent; border-radius: var(--radius);
+    padding: 1.2rem 1.2rem 1rem; box-shadow: var(--shadow);
+    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    margin-bottom: 1rem;
+  }
+  .card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(0,0,0,.2);border-color:var(--bbs-blue)}
+  .card h3{ font-size:1.15rem;color:var(--bbs-blue);margin-bottom:.6rem }
+
+  /* Result badge */
+  .out{ padding: .9rem 1rem;border-radius:12px;margin:10px 0 6px; border:2px solid transparent;font-weight:700; }
+  .ok{ background:#ecfdf5;border-color:#bbf7d0;color:#166534 }
+  .bad{ background:#fef2f2;border-color:#fecaca;color:#991b1b }
+  .muted{ color:#6b7280 }
+
+  .note{ font-size:.96rem; color:var(--muted); margin-top:.5rem }
+  .reasons{ margin: .25rem 0 .25rem 1.1rem } .reasons li{ margin:.25rem 0 }
+
+  /* Table */
+  table{ border-collapse:collapse; width:100%; background:#fff }
+  thead th{ background:#f8fbff; color:var(--muted); text-align:left; font-weight:700; border-bottom:1px solid #e9eef6; }
+  th, td{ padding:.55rem .5rem; vertical-align:middle; border-top:1px solid #eef2f7 }
+  .wght{ white-space:nowrap; color:#334155 }
+
+  /* Hints */
+  .hint{ font-weight:700 }
+  .hint.ok{ color:#166534 } .hint.warn{ color:#b45309 } .hint.danger{ color:#991b1b } .hint.muted{ color:#6b7280; font-weight:600 }
+
+  /* Form elements */
+  select{
+    min-width:6rem; padding:.5rem .6rem; border-radius:10px;
+    border:1.5px solid #e5e7eb; background:#fff; color:var(--text);
+    box-shadow: 0 1px 0 rgba(0,0,0,.02);
+  }
+  select:focus{ outline:none; border-color:var(--bbs-blue); box-shadow:0 0 0 6px var(--ring) }
+
+  /* Responsive */
+  @media (max-width: 720px){
+    header{ padding-top:2.4rem }
+    .topbar{ transform:none; top:.25rem }
+    thead{ display:none }
+    table, tbody, th, td, tr{ display:block }
+    tbody tr{
+      border:1px solid #e9eef6; border-radius:14px;
+      margin-bottom:.6rem; padding:.5rem .6rem; background:#fff
+    }
+    tbody td{ border:none; padding:.3rem 0 }
+    tbody td::before{ content: attr(data-label); display:block; font-size:.82rem; color:#6b7280; margin-bottom:2px }
+  }
+  @media (prefers-reduced-motion: reduce){ *{ transition:none !important } }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="topbar">
+        <button class="btn-back" id="btnBack" type="button" aria-label="Zurück zur Startseite">
+          <span class="icon" aria-hidden="true">←</span>
+          Zurück
+        </button>
+      </div>
+
+      <img src="../Bilder/Logo.png" alt="Logo der BBS Nienburg" />
+      <h1>Berufliches Gymnasium Gesundheit &amp; Soziales <br>Schwerpunkt Agrarwirtschaft</h1>
+      <p class="sub">Versetzungsprognose am Ende der Einführungsphase im Schwerpunkt Agrarwirtschaft.</p>
+      <div class="tag"><span class="emoji" aria-hidden="true">🎓</span>Versetzung · Agrarwirtschaft</div>
+      <p class="sub">Die Berechnung ist nicht rechtsverbindlich. Die endgültige Entscheidung über die Versetzung trifft die Klassenkonferenz.</p>
+      
+    </header>
+
+    <!-- Kernfächer -->
+    <div class="card">
+      <h3>Kernfächer</h3>
+      <table>
+        <colgroup>
+          <col style="width:40%">
+          <col style="width:20%">
+          <col style="width:20%">
+          <col style="width:20%">
+        </colgroup>
+        <thead><tr><th>Fach</th><th>KMK-Punkte</th><th>Gewichtung</th><th>Hinweis</th></tr></thead>
+        <tbody>
+          <tr>
+            <td data-label="Fach">Deutsch (DE)</td>
+            <td data-label="KMK-Punkte">
+              <select id="F13"><option value="">–</option><option value='0'>0</option>
+<option value='1'>1</option>
+<option value='2'>2</option>
+<option value='3'>3</option>
+<option value='4'>4</option>
+<option value='5'>5</option>
+<option value='6'>6</option>
+<option value='7'>7</option>
+<option value='8'>8</option>
+<option value='9'>9</option>
+<option value='10'>10</option>
+<option value='11'>11</option>
+<option value='12'>12</option>
+<option value='13'>13</option>
+<option value='14'>14</option>
+<option value='15'>15</option></select>
+            </td>
+            <td class="wght" data-label="Gewichtung">×3</td>
+            <td data-label="Hinweis"><span id="H_F13" class="hint muted"></span></td>
+          </tr>
+          <tr>
+            <td data-label="Fach">Mathematik (MA)</td>
+            <td data-label="KMK-Punkte">
+              <select id="F14"><option value="">–</option><option value='0'>0</option>
+<option value='1'>1</option>
+<option value='2'>2</option>
+<option value='3'>3</option>
+<option value='4'>4</option>
+<option value='5'>5</option>
+<option value='6'>6</option>
+<option value='7'>7</option>
+<option value='8'>8</option>
+<option value='9'>9</option>
+<option value='10'>10</option>
+<option value='11'>11</option>
+<option value='12'>12</option>
+<option value='13'>13</option>
+<option value='14'>14</option>
+<option value='15'>15</option></select>
+            </td>
+            <td class="wght" data-label="Gewichtung">×4</td>
+            <td data-label="Hinweis"><span id="H_F14" class="hint muted"></span></td>
+          </tr>
+          <tr>
+            <td data-label="Fach">Englisch (EN)</td>
+            <td data-label="KMK-Punkte">
+              <select id="F15"><option value="">–</option><option value='0'>0</option>
+<option value='1'>1</option>
+<option value='2'>2</option>
+<option value='3'>3</option>
+<option value='4'>4</option>
+<option value='5'>5</option>
+<option value='6'>6</option>
+<option value='7'>7</option>
+<option value='8'>8</option>
+<option value='9'>9</option>
+<option value='10'>10</option>
+<option value='11'>11</option>
+<option value='12'>12</option>
+<option value='13'>13</option>
+<option value='14'>14</option>
+<option value='15'>15</option></select>
+            </td>
+            <td class="wght" data-label="Gewichtung">×3</td>
+            <td data-label="Hinweis"><span id="H_F15" class="hint muted"></span></td>
+          </tr>
+          <tr>
+            <td data-label="Fach">Spanisch (SN)</td>
+            <td data-label="KMK-Punkte">
+              <select id="F16"><option value="">–</option><option value='0'>0</option>
+<option value='1'>1</option>
+<option value='2'>2</option>
+<option value='3'>3</option>
+<option value='4'>4</option>
+<option value='5'>5</option>
+<option value='6'>6</option>
+<option value='7'>7</option>
+<option value='8'>8</option>
+<option value='9'>9</option>
+<option value='10'>10</option>
+<option value='11'>11</option>
+<option value='12'>12</option>
+<option value='13'>13</option>
+<option value='14'>14</option>
+<option value='15'>15</option></select>
+            </td>
+            <td class="wght" data-label="Gewichtung">×4 (optional)</td>
+            <td data-label="Hinweis"><span id="H_F16" class="hint muted"></span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="note">Ø Kernfächer: <strong id="I13">–</strong></div>
+    </div>
+
+    <!-- Ergänzungsfächer -->
+    <div class="card">
+      <h3>Ergänzungsfächer</h3>
+      <table>
+        <colgroup>
+          <col style="width:40%">
+          <col style="width:20%">
+          <col style="width:20%">
+          <col style="width:20%">
+        </colgroup>
+        <thead><tr><th>Fach</th><th>KMK-Punkte</th><th>Gewichtung</th><th>Hinweis</th></tr></thead>
+        <tbody>
+          <tr>
+            <td data-label="Fach">Biologie (BI)</td>
+            <td data-label="KMK-Punkte">
+              <select id="F18"><option value="">–</option><option value='0'>0</option>
+<option value='1'>1</option>
+<option value='2'>2</option>
+<option value='3'>3</option>
+<option value='4'>4</option>
+<option value='5'>5</option>
+<option value='6'>6</option>
+<option value='7'>7</option>
+<option value='8'>8</option>
+<option value='9'>9</option>
+<option value='10'>10</option>
+<option value='11'>11</option>
+<option value='12'>12</option>
+<option value='13'>13</option>
+<option value='14'>14</option>
+<option value='15'>15</option></select>
+            </td>
+            <td class="wght" data-label="Gewichtung">×2</td>
+            <td data-label="Hinweis"><span id="H_F18" class="hint muted"></span></td>
+          </tr>
+          <tr>
+            <td data-label="Fach">Politik (PO)</td>
+            <td data-label="KMK-Punkte">
+              <select id="F19"><option value="">–</option><option value='0'>0</option>
+<option value='1'>1</option>
+<option value='2'>2</option>
+<option value='3'>3</option>
+<option value='4'>4</option>
+<option value='5'>5</option>
+<option value='6'>6</option>
+<option value='7'>7</option>
+<option value='8'>8</option>
+<option value='9'>9</option>
+<option value='10'>10</option>
+<option value='11'>11</option>
+<option value='12'>12</option>
+<option value='13'>13</option>
+<option value='14'>14</option>
+<option value='15'>15</option></select>
+            </td>
+            <td class="wght" data-label="Gewichtung">×1</td>
+            <td data-label="Hinweis"><span id="H_F19" class="hint muted"></span></td>
+          </tr>
+          <tr>
+            <td data-label="Fach">Geschichte (GE)</td>
+            <td data-label="KMK-Punkte">
+              <select id="F20"><option value="">–</option><option value='0'>0</option>
+<option value='1'>1</option>
+<option value='2'>2</option>
+<option value='3'>3</option>
+<option value='4'>4</option>
+<option value='5'>5</option>
+<option value='6'>6</option>
+<option value='7'>7</option>
+<option value='8'>8</option>
+<option value='9'>9</option>
+<option value='10'>10</option>
+<option value='11'>11</option>
+<option value='12'>12</option>
+<option value='13'>13</option>
+<option value='14'>14</option>
+<option value='15'>15</option></select>
+            </td>
+            <td class="wght" data-label="Gewichtung">×1</td>
+            <td data-label="Hinweis"><span id="H_F20" class="hint muted"></span></td>
+          </tr>
+          <tr>
+            <td data-label="Fach">Religion / Werte &amp; Normen (RE/WN)</td>
+            <td data-label="KMK-Punkte">
+              <select id="F21"><option value="">–</option><option value='0'>0</option>
+<option value='1'>1</option>
+<option value='2'>2</option>
+<option value='3'>3</option>
+<option value='4'>4</option>
+<option value='5'>5</option>
+<option value='6'>6</option>
+<option value='7'>7</option>
+<option value='8'>8</option>
+<option value='9'>9</option>
+<option value='10'>10</option>
+<option value='11'>11</option>
+<option value='12'>12</option>
+<option value='13'>13</option>
+<option value='14'>14</option>
+<option value='15'>15</option></select>
+            </td>
+            <td class="wght" data-label="Gewichtung">×2</td>
+            <td data-label="Hinweis"><span id="H_F21" class="hint muted"></span></td>
+          </tr>
+          <tr>
+            <td data-label="Fach">Sport (SP)</td>
+            <td data-label="KMK-Punkte">
+              <select id="F22"><option value="">–</option><option value='0'>0</option>
+<option value='1'>1</option>
+<option value='2'>2</option>
+<option value='3'>3</option>
+<option value='4'>4</option>
+<option value='5'>5</option>
+<option value='6'>6</option>
+<option value='7'>7</option>
+<option value='8'>8</option>
+<option value='9'>9</option>
+<option value='10'>10</option>
+<option value='11'>11</option>
+<option value='12'>12</option>
+<option value='13'>13</option>
+<option value='14'>14</option>
+<option value='15'>15</option></select>
+            </td>
+            <td class="wght" data-label="Gewichtung">×2</td>
+            <td data-label="Hinweis"><span id="H_F22" class="hint muted"></span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="note">Ø Ergänzungsfächer: <strong id="I18">–</strong></div>
+    </div>
+
+    <!-- Profilbereich -->
+    <div class="card">
+      <h3>Profilbereich</h3>
+      <table>
+        <colgroup>
+          <col style="width:40%">
+          <col style="width:20%">
+          <col style="width:20%">
+          <col style="width:20%">
+        </colgroup>
+        <thead><tr><th>Fach</th><th>KMK-Punkte</th><th>Gewichtung</th><th>Hinweis</th></tr></thead>
+        <tbody>
+          <tr>
+            <td data-label="Fach">Agrar- und Umwelttechnologie (AUT)</td>
+            <td data-label="KMK-Punkte">
+              <select id="F24"><option value="">–</option><option value='0'>0</option>
+<option value='1'>1</option>
+<option value='2'>2</option>
+<option value='3'>3</option>
+<option value='4'>4</option>
+<option value='5'>5</option>
+<option value='6'>6</option>
+<option value='7'>7</option>
+<option value='8'>8</option>
+<option value='9'>9</option>
+<option value='10'>10</option>
+<option value='11'>11</option>
+<option value='12'>12</option>
+<option value='13'>13</option>
+<option value='14'>14</option>
+<option value='15'>15</option></select>
+            </td>
+            <td class="wght" data-label="Gewichtung">×4</td>
+            <td data-label="Hinweis"><span id="H_F24" class="hint muted"></span></td>
+          </tr>
+          <tr>
+            <td data-label="Fach">Praxis (PRA)</td>
+            <td data-label="KMK-Punkte">
+              <select id="F25"><option value="">–</option><option value='0'>0</option>
+<option value='1'>1</option>
+<option value='2'>2</option>
+<option value='3'>3</option>
+<option value='4'>4</option>
+<option value='5'>5</option>
+<option value='6'>6</option>
+<option value='7'>7</option>
+<option value='8'>8</option>
+<option value='9'>9</option>
+<option value='10'>10</option>
+<option value='11'>11</option>
+<option value='12'>12</option>
+<option value='13'>13</option>
+<option value='14'>14</option>
+<option value='15'>15</option></select>
+            </td>
+            <td class="wght" data-label="Gewichtung">×2</td>
+            <td data-label="Hinweis"><span id="H_F25" class="hint muted"></span></td>
+          </tr>
+          <tr>
+            <td data-label="Fach">Berufliche Informatik (BIF)</td>
+            <td data-label="KMK-Punkte">
+              <select id="F26"><option value="">–</option><option value='0'>0</option>
+<option value='1'>1</option>
+<option value='2'>2</option>
+<option value='3'>3</option>
+<option value='4'>4</option>
+<option value='5'>5</option>
+<option value='6'>6</option>
+<option value='7'>7</option>
+<option value='8'>8</option>
+<option value='9'>9</option>
+<option value='10'>10</option>
+<option value='11'>11</option>
+<option value='12'>12</option>
+<option value='13'>13</option>
+<option value='14'>14</option>
+<option value='15'>15</option></select>
+            </td>
+            <td class="wght" data-label="Gewichtung">×3</td>
+            <td data-label="Hinweis"><span id="H_F26" class="hint muted"></span></td>
+          </tr>
+          <tr>
+            <td data-label="Fach">Betriebs- und Volkswirtschaft (BV)</td>
+            <td data-label="KMK-Punkte">
+              <select id="F27"><option value="">–</option><option value='0'>0</option>
+<option value='1'>1</option>
+<option value='2'>2</option>
+<option value='3'>3</option>
+<option value='4'>4</option>
+<option value='5'>5</option>
+<option value='6'>6</option>
+<option value='7'>7</option>
+<option value='8'>8</option>
+<option value='9'>9</option>
+<option value='10'>10</option>
+<option value='11'>11</option>
+<option value='12'>12</option>
+<option value='13'>13</option>
+<option value='14'>14</option>
+<option value='15'>15</option></select>
+            </td>
+            <td class="wght" data-label="Gewichtung">×3</td>
+            <td data-label="Hinweis"><span id="H_F27" class="hint muted"></span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="note">Ø Profilbereich: <strong id="I24">–</strong></div>
+    </div>
+
+    <!-- Ergebnis / Hinweise (am Ende) -->
+    <div class="card">
+      <div id="result" class="out muted">Bitte Noten auswählen…</div>
+      <ul id="reasons" class="reasons"></ul>
+    </div>
+
+    <footer style="text-align:center;color:var(--muted);margin-top:.5rem">
+      <small><strong>BBS Nienburg/Weser</strong> · <a href="https://www.bbs-nienburg.de/abteilungen/abt-2-berufliches-gymnasium/" style="color:var(--bbs-blue)">Berufliches Gymnasium</a></small>
+    </footer>
+  </div>
+
+<script>
+/* Zurück-Button: erst history.back(), sonst index.html */
+document.getElementById('btnBack').addEventListener('click', function(){
+  if (document.referrer && new URL(document.referrer).origin === location.origin && history.length > 1){
+    history.back();
+  } else {
+    location.href = '../index.html';
+  }
+});
+
+/* Rechen-Logik */
+function toNum(v){ var x=parseFloat(v); return isNaN(x)? null : x; }
+
+function avgKern(F13,F14,F15,F16){
+  var a=toNum(F13), b=toNum(F14), c=toNum(F15), d=toNum(F16);
+  if(a==null||b==null||c==null) return null;
+  if(d===null){ return (a*3+b*4+c*3)/10; }
+  else { return (a*3+b*4+c*3+d*4)/14; }
+}
+function avgErg(f18,f19,f20,f21,f22){
+  var vals=[toNum(f18),toNum(f19),toNum(f20),toNum(f21),toNum(f22)];
+  var w=[2,1,1,2,2]; var sum=0, wsum=0;
+  for(var i=0;i<vals.length;i++){ if(vals[i]!=null){ sum+=vals[i]*w[i]; wsum+=w[i]; } }
+  if(wsum===0) return null; return sum/wsum;
+}
+function avgProfil(f24,f25,f26,f27){
+  var a=toNum(f24),b=toNum(f25),c=toNum(f26),d=toNum(f27);
+  if([a,b,c,d].some(function(v){return v==null;})) return null;
+  return (a*4+b*2+c*3+d*3)/12;
+}
+function fixed(x){ return x==null? "–" : (Math.round(x*100)/100).toFixed(2).replace(".",","); }
+
+function hintFor(value, opts){
+  opts = opts||{optional:false};
+  var n=toNum(value);
+  var el={text:"", cls:"hint muted"};
+  if(n===null){
+    el.text = opts.optional ? "optional" : "";
+    return el;
+  }
+  if(n===0){
+    el.text="00 Punkte";
+    el.cls="hint danger";
+    return el;
+  }
+  if(n<5){
+    el.text="Unterkurs";
+    el.cls="hint warn";
+    return el;
+  }
+  el.text="ok";
+  el.cls="hint ok";
+  return el;
+}
+function applyHint(id, value, opts){
+  var h=hintFor(value, opts);
+  var span=document.getElementById(id);
+  span.textContent=h.text;
+  span.className=h.cls;
+}
+
+function calc(){
+  var ids=['F13','F14','F15','F16','F18','F19','F20','F21','F22','F24','F25','F26','F27'];
+  var v={};
+  for(var i=0;i<ids.length;i++){
+    var id=ids[i];
+    v[id]=document.getElementById(id).value;
+  }
+
+  applyHint('H_F13', v.F13);
+  applyHint('H_F14', v.F14);
+  applyHint('H_F15', v.F15);
+  applyHint('H_F16', v.F16, {optional:true});
+  applyHint('H_F18', v.F18);
+  applyHint('H_F19', v.F19);
+  applyHint('H_F20', v.F20);
+  applyHint('H_F21', v.F21);
+  applyHint('H_F22', v.F22);
+  applyHint('H_F24', v.F24);
+  applyHint('H_F25', v.F25);
+  applyHint('H_F26', v.F26);
+  applyHint('H_F27', v.F27);
+
+  var A13=avgKern(v.F13,v.F14,v.F15,v.F16);
+  var A18=avgErg(v.F18,v.F19,v.F20,v.F21,v.F22);
+  var A24=avgProfil(v.F24,v.F25,v.F26,v.F27);
+  document.getElementById('I13').textContent=fixed(A13);
+  document.getElementById('I18').textContent=fixed(A18);
+  document.getElementById('I24').textContent=fixed(A24);
+
+  var n={};
+  Object.keys(v).forEach(function(k){
+    n[k]=toNum(v[k]);
+  });
+
+  var result=document.getElementById('result');
+  var list=document.getElementById('reasons');
+
+  // Pflichtfächer: alle müssen gesetzt sein, Spanisch (F16) darf als einziges Fach leer bleiben
+  var requiredIds=['F13','F14','F15','F18','F19','F20','F21','F22','F24','F25','F26','F27'];
+  var allFilled = requiredIds.every(function(id){
+    return v[id] !== "";
+  });
+
+  if(!allFilled){
+    result.className="out muted";
+    result.textContent="Bitte alle Noten eingeben…";
+    list.innerHTML="";
+    return;
+  }
+
+  var condAvgAnyUnder5 = ((A13!=null && A13<5) || (A18!=null && A18<5) || (A24!=null && A24<5));
+  var condProfilUnterkurs = (n.F24!=null && n.F24<5);
+  var zeroAny = [n.F13,n.F14,n.F15,n.F16,n.F18,n.F19,n.F20,n.F21,n.F22,n.F25,n.F26,n.F27]
+    .some(function(x){ return x===0; });
+
+  var unterkursSet=[n.F13,n.F14,n.F15,n.F16,n.F18,n.F19,n.F20,n.F21,n.F22,n.F25,n.F26,n.F27];
+  var uCount=unterkursSet.reduce(function(acc,x){
+    return (x!=null && x<5)?acc+1:acc;
+  }, 0);
+  var condManyUnterkurse = (uCount >= 3);
+
+  var pSubjects = [n.F13,n.F14,n.F15];  // Fächer, die mögliche P-Fächer sind
+  var pCount = pSubjects.reduce(function(acc,x){
+    return (x!=null && x<5)?acc+1:acc;
+  }, 0);
+  var condPFaecher = (pCount >= 2);
+
+  var fail = (condAvgAnyUnder5 || condProfilUnterkurs || zeroAny || condManyUnterkurse || condPFaecher);
+
+  var reasons=[];
+  if (fail){
+    if (condAvgAnyUnder5) reasons.push("Durchschnittsnote eines Lernbereichs unter 5.");
+    if (condManyUnterkurse) reasons.push("Insgesamt mehr als 2 Unterkurse.");
+    if (condPFaecher) reasons.push("Unterkurs in 2 möglichen P-Fächern.");
+    if (zeroAny) reasons.push("Ein Fach mit 00 KMK-Punkten.");
+    if (condProfilUnterkurs) reasons.push("Unterkurs im Profilfach.");
+  }
+
+  list.innerHTML = reasons.map(function(txt){ return "<li>"+txt+"</li>"; }).join("");
+
+  if (fail){
+    result.className="out bad";
+    result.textContent="Ergebnis: nicht versetzt";
+  } else {
+    result.className="out ok";
+    result.textContent="Ergebnis: versetzt";
+  }
+}
+
+function bind(){
+  var selects=document.querySelectorAll('select');
+  for(var i=0;i<selects.length;i++){
+    selects[i].addEventListener('change', calc);
+    selects[i].addEventListener('input', calc);
+  }
+  calc();
+}
+document.addEventListener('DOMContentLoaded', bind);
+</script>
+</body>
+</html>
