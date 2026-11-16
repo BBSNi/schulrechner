@@ -6,12 +6,14 @@
 const FACH = {
   DE: "Deutsch", EN: "Englisch", SN: "Spanisch", MA: "Mathematik", BI: "Biologie",
   BIF: "Berufliche Informatik", VW: "Volkswirtschaft", BV: "Betriebs- und Volkswirtschaft",
-  BRC: "Betriebswirtschaft mit Rechnungswesen-Controlling", AUT: "Agrar- und Umwelttechnologie", PP: "Pädagogik-Psychologie"
+  BRC: "Betriebswirtschaft mit Rechnungswesen-Controlling", AUT: "Agrar- und Umwelttechnologie", PP: "Pädagogik-Psychologie",
+  TEE: "Technik"
 };
 const SCHWERPUNKT = {
   agrar:      { p1: "AUT", profil: "BV" },
   sozial:     { p1: "PP",  profil: "BV" },
-  wirtschaft: { p1: "BRC", profil: "VW" }
+  wirtschaft: { p1: "BRC", profil: "VW" },
+  technik:    { p1: "TEE", profil: "BV", nw: "Naturwissenschaft (Physik bzw. belegte Naturwissenschaft)" }  // läuft aus: keine Neuaufnahme mehr
 };
 
 /* ------------------------------------------------------------------
@@ -49,9 +51,13 @@ const KOMBINATIONEN = [].concat(
     [133,"DE","MA","BIF","BI"],[134,"DE","MA","BIF","EN"],[135,"DE","MA","BIF","SN"],[136,"DE","MA","BIF","VW"],[137,"DE","MA","VW","BI"],
     [138,"DE","MA","VW","EN"],[139,"DE","MA","VW","SN"],[140,"DE","MA","VW","BIF"],[141,"DE","MA","BI","VW"],[142,"DE","MA","BI","BIF"],
     [143,"EN","MA","BIF","BI"],[144,"EN","MA","BIF","DE"],[145,"EN","MA","BIF","VW"],[146,"EN","MA","BIF","SN"],[147,"EN","MA","VW","BI"],
-    [148,"EN","MA","VW","DE"],[149,"EN","MA","VW","SN"],[150,"EN","MA","VW","BIF"],[151,"EN","MA","BI","BIF"],[152,"EN","MA","BI","VW"]])
+    [148,"EN","MA","VW","DE"],[149,"EN","MA","VW","SN"],[150,"EN","MA","VW","BIF"],[151,"EN","MA","BI","BIF"],[152,"EN","MA","BI","VW"]]),
+  /* Technik (läuft aus, nur noch laufende Jahrgänge) – eigene Nummerierung der Blätter Technik_ohne_SN und Technik_SN */
+  K("technik", false, [[1,"DE","MA","BV","EN"],[2,"DE","MA","BV","SN"],[3,"DE","MA","BV","BIF"],[9,"EN","MA","BV","DE"],[10,"EN","MA","BV","BIF"]]),
+  K("technik", true, [[16,"DE","MA","BV","EN"],[17,"DE","MA","BV","BIF"],[22,"DE","MA","BV","SN"],[24,"EN","MA","BV","DE"],[25,"EN","MA","BV","BIF"]])
 );
-/* Abgeglichen mit den Einbringungsblättern der Prüfungsfächerwahl (Agrar_SN … Wirtschaft_ohne_SN), 2026-11-15. */
+/* Abgeglichen mit den Einbringungsblättern der Prüfungsfächerwahl (Agrar_SN … Wirtschaft_ohne_SN), 2026-11-15;
+   Technik_SN und Technik_ohne_SN, 2026-11-16. */
 
 /* ------------------------------------------------------------------
    3) Einbringung nach § 15 Abs. 4 und Anlage 4 AVO-GOBAK
@@ -93,7 +99,7 @@ function einbringung(k) {
   }
   add(FACH[profil], nProfil, nProfil === 4 ? alle4 : "zwei Halbjahresergebnisse nach Wahl", profil);
   add(FACH.BIF, nBIF, nBIF === 4 ? alle4 : "zwei Halbjahresergebnisse nach Wahl", "BIF");
-  add(pf("BI") ? FACH.BI : "Naturwissenschaft (Biologie bzw. belegte Naturwissenschaft)", 4, alle4 + " in derselben Naturwissenschaft", "BI");
+  add(pf("BI") ? FACH.BI : (sp.nw || "Naturwissenschaft (Biologie bzw. belegte Naturwissenschaft)"), 4, alle4 + " in derselben Naturwissenschaft", "BI");
   add("Geschichte", 2, "1. und 2. Halbjahr", "GE", [1, 2]);
   add("Religion bzw. Werte und Normen", 2, "3. und 4. Halbjahr", "RE", [3, 4]);
   add("Praxis", 2, "1. und 2. Halbjahr", "PX", [1, 2]);

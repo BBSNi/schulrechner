@@ -24,6 +24,10 @@ Die Versetzungsrechner sind mit Anlage 7 § 5 BbS-VO abgeglichen (Gewichtung der
 Die Einbringungsverpflichtung berechnet die Seite nach § 15 Abs. 4 und Anlage 4 AVO-GOBAK; die Kombinationen stammen aus der Prüfungsfächerwahl der BBS Nienburg (alle 152 Kombinationen; am 2026-11-15 mit den Einbringungsblättern der Prüfungsfächerwahl abgeglichen).
 Ältere Meppener Seiten (Technik, Einbringung je Schwerpunkt) liegen nur in der lokalen Sicherung.
 
+**Technik (seit 2026-11-16):** Einbringung und Abiturrechner enthalten den auslaufenden Schwerpunkt Technik (P1 Technik, Profilfach Betriebs- und Volkswirtschaft)
+mit den 10 Nienburger Kombinationen aus den Blättern „Technik_ohne_SN“ (Nr. 1, 2, 3, 9, 10) und „Technik_SN“ (Nr. 16, 17, 22, 24, 25).
+Die Nummern überschneiden sich mit Agrarwirtschaft – so stehen sie in der Prüfungsfächerwahl. Wenn kein Technik-Jahrgang mehr in der Qualifikationsphase ist, die Option wieder entfernen.
+
 ## Veröffentlichung
 
 Über **GitHub Pages**: Einstellungen → Pages → Branch `main`, Ordner `/ (root)`.
